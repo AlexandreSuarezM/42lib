@@ -6,18 +6,23 @@
 /*   By: asuarez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 20:00:18 by asuarez           #+#    #+#             */
-/*   Updated: 2026/06/15 20:02:26 by asuarez          ###   ########.fr       */
+/*   Updated: 2026/06/17 15:13:10 by asuarez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char *ft_strcat(char *dest, char *src)
+char	*ft_strcat(char *dest, char *src)
 {
 	int	i;
+	int	j;
 
-	while (*dest)
+	i = 0;
+	j = 0;
+	while (dest[i])
 		i ++;
-	while (*src)
+	while (src[j])
+	{
 		dest[i + j] = src[j];
-
+		j ++;
+	}
 	return (0);
 }

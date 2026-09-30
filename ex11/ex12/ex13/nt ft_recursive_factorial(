@@ -1,0 +1,21 @@
+#include <stdlib.h>
+#include <stdio.h>
+
+
+int ft_recursive_factorial(int nb)
+{
+    long int fact; 
+    long int check;
+
+    while (nb > 1)
+    {
+            check = fact;
+            fact * = nb;
+            nb --;
+            if (fact < check)
+                return 0;
+    }
+
+    return fact;
+
+}

@@ -1,0 +1,1 @@
+Define a tipestruct that has value top and next

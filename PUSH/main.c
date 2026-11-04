@@ -37,10 +37,12 @@ int	main(int argc, char **argv)
 		// add on the top of the stack 
 		ft_lstadd_top(&lst, new);
 	}
+
+	// initialize the b stack
+	// sorting
+
+
 	new = lst;
-
-
-	
 	while(new)
 	{
 		aux = new->down;

@@ -6,14 +6,14 @@
 /*   By: asuarez <asuarez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/13 15:26:59 by asuarez           #+#    #+#             */
-/*   Updated: 2026/11/05 15:09:34 by asuarez          ###   ########.fr       */
+/*   Updated: 2026/11/05 15:20:37 by asuarez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
 // node -> value es (*node)->value accede al nodo i luego al valor que es *int
-t_list	*ft_lstnew(int content)
+t_list	*ft_lstnew(char *content)
 {
 	t_list	*node;
 

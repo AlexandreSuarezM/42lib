@@ -6,7 +6,7 @@
 /*   By: asuarez <asuarez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/04 16:35:59 by asuarez           #+#    #+#             */
-/*   Updated: 2026/11/05 15:04:56 by asuarez          ###   ########.fr       */
+/*   Updated: 2026/11/05 15:22:10 by asuarez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 typedef struct s_list
 {
-	int				content;
+	char			*content;
 	int				rel_pos;     
 	struct s_list	*up;
 	struct s_list	*down;

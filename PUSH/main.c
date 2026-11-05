@@ -3,20 +3,6 @@
 
 
 #include "libft.h"
-/*
-typedef struct s_list
-{
-	int				value;
-	struct s_list	*up;
-	struct s_list	*down;
-}	t_list;
-*/
-
-// i = 0 nombre
-// atoi modificado para devolver NULL si no num o overfloat
-// la deteccion de numeros mas grandes esta en memoria
-// puedo usar atoi o puedo usar una transformacion de los chars a valores
-// ai ago esto necesito gaurdar el char .
 
 #include "pushswap.h"
 
@@ -36,7 +22,7 @@ int	main(int argc, char **argv)
 	while (i < argv)
 	{
 		// create with the value 
-		new = ft_lstnew(ft_atoi(argv[i]));
+		new = ft_lstnew((argv[i]));
 		// add on the top of the stack 
 		ft_lstadd_top(&alst, new);
 	}
@@ -46,19 +32,21 @@ int	main(int argc, char **argv)
 
 
 	new = alst;
-	while(new)
+	while(new->down)
 	{
 		aux = new->down;
 		while (aux)
 		{
-			if (aux->value == new->value)
+			if (aux->value == new->value || isnum(new->value))
 				return (1);
-			if (aux->value < new->value)
+			if (ft_strcmp(aux->value,new->value))
 				new->rel_pos++;
 			aux = aux->down;
 		}
 		new = new->down;
 	}
+	if (isnum(aux->value))
+		return (1);
 
 	ft_lstclear(&alst);
 	return (0);

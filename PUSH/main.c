@@ -18,13 +18,16 @@ typedef struct s_list
 // puedo usar atoi o puedo usar una transformacion de los chars a valores
 // ai ago esto necesito gaurdar el char .
 
+#include "pushswap.h"
+
 int	main(int argc, char **argv)
 {
 	int	i;
 
 	t_list	*new;
-	t_list	*lst;
+	t_list	*alst;
 	t_list	*aux;
+	t_list	*blst;
 
 	i = 1;
 	if(argc < 1)
@@ -35,14 +38,14 @@ int	main(int argc, char **argv)
 		// create with the value 
 		new = ft_lstnew(ft_atoi(argv[i]));
 		// add on the top of the stack 
-		ft_lstadd_top(&lst, new);
+		ft_lstadd_top(&alst, new);
 	}
 
-	// initialize the b stack
-	// sorting
+	// stack b gets initialized with a lstadd 
+	// sorting 
 
 
-	new = lst;
+	new = alst;
 	while(new)
 	{
 		aux = new->down;
@@ -50,15 +53,13 @@ int	main(int argc, char **argv)
 		{
 			if (aux->value == new->value)
 				return (1);
+			if (aux->value < new->value)
+				new->rel_pos++;
 			aux = aux->down;
 		}
 		new = new->down;
 	}
-	
 
-
-
-
-	ft_lstclear(&lst);
+	ft_lstclear(&alst);
 	return (0);
 }

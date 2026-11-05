@@ -6,11 +6,11 @@
 /*   By: asuarez <asuarez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/14 14:14:03 by asuarez           #+#    #+#             */
-/*   Updated: 2026/11/04 18:32:09 by asuarez          ###   ########.fr       */
+/*   Updated: 2026/11/04 22:01:26 by asuarez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "pushswap.h"
 
 // la reserva de memoria ya esta liberada por nodos .
 

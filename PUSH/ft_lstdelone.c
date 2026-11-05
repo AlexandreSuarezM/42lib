@@ -6,14 +6,13 @@
 /*   By: asuarez <asuarez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/14 13:59:19 by asuarez           #+#    #+#             */
-/*   Updated: 2026/11/04 21:33:28 by asuarez          ###   ########.fr       */
+/*   Updated: 2026/11/04 21:57:02 by asuarez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "pushswap.h"
 
-
-void	ft_lstdelone(t_list **lst)
+void	ft_lstdelfirst(t_list **lst)
 {
 	t_list	*aux;
 

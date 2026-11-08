@@ -1,9 +1,14 @@
-// the code has to +1 for bad sort and + 1 if not 
-// for that take all the arguments 
-// give them relative size. idfk its odd 
-// mistakes / total < return 
-// msitake = misplaced element = can compare in chuncks
-// 1 2 3 or maybe they really jsut ask for order 1 2 and all g
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   disorder.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: asuarez <asuarez@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/11/05 15:52:56 by asuarez           #+#    #+#             */
+/*   Updated: 2026/11/05 15:53:00 by asuarez          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 double	disorder(t_list *lst)
 {
@@ -26,4 +31,3 @@ double	disorder(t_list *lst)
 
 
 
-// atoi guard for no nunmbers repated is done or 

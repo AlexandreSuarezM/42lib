@@ -39,7 +39,7 @@ int	main(int argc, char **argv)
 		{
 			if (aux->value == new->value || isnum(new->value))
 				return (1);
-			if (ft_strcmp(aux->value,new->value))
+			if (bigger(aux->value,new->value) < 0)
 				new->rel_pos++;
 			aux = aux->down;
 		}
@@ -47,7 +47,24 @@ int	main(int argc, char **argv)
 	}
 	if (isnum(aux->value))
 		return (1);
+	// now we get the index of the max element no need tho its argcv
+	//ft_lstsize(alst);
+	
 
 	ft_lstclear(&alst);
 	return (0);
+}
+
+
+
+
+// after the if values are nums and no equal
+// if same len return the strcmp wich si the bigger
+// else the longest 
+// positive first is the bigger cant be 0 discardted on previous while 
+int bigger(char  *first, char *second)
+{
+		if(ft_strlen(first) == ft_strlen(second))
+			return (ft_strcmp(first, second));
+		return(ft_strlen(first) - ft_strlen(second));
 }

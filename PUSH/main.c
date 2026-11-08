@@ -54,7 +54,15 @@ int	main(int argc, char **argv)
 	ft_lstclear(&alst);
 	return (0);
 }
+// adjust the argc counts because the --tipe takes on slot
 
+if (argv[1] == "")
+// algo
+if (argv[1] == "")
+// algo
+if (argv[1] == "")
+// algo:
+else
 
 
 
@@ -64,7 +72,19 @@ int	main(int argc, char **argv)
 // positive first is the bigger cant be 0 discardted on previous while 
 int bigger(char  *first, char *second)
 {
+	if(first[0] == '-' && second[0] != '-')
+		return (-1);
+	if(first[0] != '-' && second[0] == '-')
+		return (1);
+	if(first[0] == '-' && second[0] == '-')
+	{
 		if(ft_strlen(first) == ft_strlen(second))
-			return (ft_strcmp(first, second));
-		return(ft_strlen(first) - ft_strlen(second));
+			return ((int)ft_strcmp(second, first));
+		return((int)(ft_strlen(second) - ft_strlen(first)));	
+	}	
+	
+	if(ft_strlen(first) == ft_strlen(second))
+		return (ft_strcmp(first, second));
+	return(ft_strlen(first) - ft_strlen(second));
 }
+

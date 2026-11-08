@@ -6,12 +6,11 @@
 /*   By: asuarez <asuarez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/05 14:46:19 by asuarez           #+#    #+#             */
-/*   Updated: 2026/11/05 17:44:02 by asuarez          ###   ########.fr       */
+/*   Updated: 2026/11/08 16:27:36 by asuarez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	minmax(**alst, **blist)
-{
-
-}
-
+// on simple and bad algo
+Selection Sort — O(n²).
+Chunk-based sorting — O(n√n).
+Radix Sort — O(n log n).

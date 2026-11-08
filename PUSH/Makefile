@@ -1,22 +1,35 @@
-NAME = PUSHSWAP
 
-SRC = 	disorder.c    	\
-    	ft_lstclear.c	\  
-		ft_lstnew.c  	\
-		pushswap.h  	\
-		ft_lstadd_to.c	\
-		ft_lstdelone.c 	\ 
+NAME = push_swap
 
+CC = cc
+CFLAGS = -Wall -Wextra -Werror
 
-OBJ = (SRC:%.c=%.o)
+SRC = main.c \
+      disorder.c \
+      ft_lstclear.c \
+      ft_lstnew.c \
+      ft_lstadd_to.c \
+      ft_lstdelone.c
+
+OBJ = $(SRC:.c=.o)
+
+HEADER = pushswap.h
 
 all: $(NAME)
 
-%.o:%.c
-	cc -Wall -Werror -Wextra 
+$(NAME): $(OBJ)
+	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+
+%.o: %.c $(HEADER)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+main1: $(NAME)
+	./$(NAME) --complexity
 
 clean:
+	rm -f $(OBJ)
 
-fclean:
+fclean: clean
+	rm -f $(NAME)
 
-re:
+re: fclean all

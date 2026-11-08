@@ -6,7 +6,7 @@
 /*   By: asuarez <asuarez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/08 16:44:08 by asuarez           #+#    #+#             */
-/*   Updated: 2026/11/08 17:26:05 by asuarez          ###   ########.fr       */
+/*   Updated: 2026/11/08 18:04:14 by asuarez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	binary(int num, int byte)
 }
 // alter ** but move *b
 //  no need to move b its gets oushed perma
-void	Radix(t_list **lst)
+void	Radix(t_list **a, t_list **b)
 {
 	int	byte;
 	int maxbyte;

@@ -6,7 +6,7 @@
 /*   By: asuarez <asuarez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/09 15:59:34 by asuarez           #+#    #+#             */
-/*   Updated: 2026/11/09 17:49:24 by asuarez          ###   ########.fr       */
+/*   Updated: 2026/11/09 17:54:54 by asuarez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,8 @@ int	rotatemin(t_list **a, t_list **b)
 	count = 0;
 	a_aux = *a; 
 
-	while (*a)
+	// *a has to be the last 3 to make 
+	while (*a && )
 	{
 		if(searchmax(*a) = 0)
 			pusha;
@@ -86,7 +87,7 @@ int	rotatemin(t_list **a, t_list **b)
 	// to move a is random
 	// to move both kk
 	// wtf pure euristic find min and cba
-	//
+	// Add the sort 3 looking for max its only a permulation 
 
 
 

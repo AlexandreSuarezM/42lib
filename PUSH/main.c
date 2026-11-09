@@ -60,8 +60,8 @@ if (argv[1] == "")
 // algo
 if (argv[1] == "")
 // algo
-if (argv[1] == "")
-// algo:
+if (argv[1] == "complex")
+	RadixSort(&alst,&blst);
 else
 
 

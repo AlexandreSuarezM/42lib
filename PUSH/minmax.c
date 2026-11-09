@@ -6,11 +6,9 @@
 /*   By: asuarez <asuarez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/05 14:46:19 by asuarez           #+#    #+#             */
-/*   Updated: 2026/11/08 16:27:36 by asuarez          ###   ########.fr       */
+/*   Updated: 2026/11/09 17:54:55 by asuarez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// on simple and bad algo
-Selection Sort — O(n²).
+// on simple and bad alg
 Chunk-based sorting — O(n√n).
-Radix Sort — O(n log n).

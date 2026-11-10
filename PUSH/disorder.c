@@ -6,10 +6,11 @@
 /*   By: asuarez <asuarez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/05 15:52:56 by asuarez           #+#    #+#             */
-/*   Updated: 2026/11/10 16:23:06 by asuarez          ###   ########.fr       */
+/*   Updated: 2026/11/10 17:47:53 by asuarez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "pushswap.h"
 // given a list returns the metric of misplaced with.
 double	disorder(t_list *lst)
 {
@@ -22,7 +23,7 @@ double	disorder(t_list *lst)
 	aux = lst;
 	while(lst->down != aux)
 	{
-		if(compare(lst,lst->down) < 0)
+		if(lst->rel_pos < lst->down->rel_pos)
 			mistakes++;
 		total++;
 		lst = lst->down;

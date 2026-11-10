@@ -6,7 +6,7 @@
 /*   By: asuarez <asuarez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/13 15:26:59 by asuarez           #+#    #+#             */
-/*   Updated: 2026/11/05 15:20:37 by asuarez          ###   ########.fr       */
+/*   Updated: 2026/11/10 17:54:11 by asuarez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_list	*ft_lstnew(char *content)
 	node = malloc(sizeof(t_list));
 	if (!node)
 		return (NULL);
-	node->value = content;
+	node->content = content;
 	node->up = NULL;
 	node->down = NULL;
 	node->rel_pos = 0;

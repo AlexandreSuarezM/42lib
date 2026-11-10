@@ -6,9 +6,11 @@
 /*   By: asuarez <asuarez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/04 21:36:42 by asuarez           #+#    #+#             */
-/*   Updated: 2026/11/04 21:37:25 by asuarez          ###   ########.fr       */
+/*   Updated: 2026/11/10 17:17:31 by asuarez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "pushswap.h"
 
 void	rotateup(t_list **lst)
 {

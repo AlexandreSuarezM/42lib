@@ -6,7 +6,7 @@
 /*   By: asuarez <asuarez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/14 13:59:19 by asuarez           #+#    #+#             */
-/*   Updated: 2026/11/04 21:57:02 by asuarez          ###   ########.fr       */
+/*   Updated: 2026/11/10 21:11:12 by asuarez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_lstdelfirst(t_list **lst)
 	if (!*lst)
 		return ;
 	aux = *lst;
-	if((*lst)->down = *lst)
+	if((*lst)->down == *lst)
 		*lst = NULL;
 	else
 	{

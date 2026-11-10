@@ -6,11 +6,11 @@
 /*   By: asuarez <asuarez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/04 16:02:53 by asuarez           #+#    #+#             */
-/*   Updated: 2026/11/05 15:28:09 by asuarez          ###   ########.fr       */
+/*   Updated: 2026/11/10 17:18:38 by asuarez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "pushswap.h"
 
 int	ft_strcmp(char *s1, char *s2)
 {

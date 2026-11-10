@@ -6,12 +6,13 @@
 /*   By: asuarez <asuarez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/09 15:59:34 by asuarez           #+#    #+#             */
-/*   Updated: 2026/11/10 16:22:54 by asuarez          ###   ########.fr       */
+/*   Updated: 2026/11/10 17:17:16 by asuarez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "pushswap.h"
 // find the shortest path to the max value of the stack parse size has argc -2 
-int	searchmax(t_list *stack_a, int size)
+static	int	searchmax(t_list *stack_a, int size)
 {
 	t_list	*aux;
 	int		r;
@@ -27,9 +28,39 @@ int	searchmax(t_list *stack_a, int size)
 	}
 	return (-r);
 }
-
+// max mid min 
+// if min on top or bot  roptate
+// easy 25 lines fix but eww
+static	void	sort3(**a)
+{	
+	if(disorder(a) == 0)
+		break ;
+	if(disorder(a) == 2 )
+	{
+		if((*a)->rel_val == 0)
+		{
+			swap(a);
+			rotatedown(a);
+		}
+		else
+		{
+			swap(a);
+			rotatedown(a);
+		}
+		break;
+	}
+	if((*a)->rel_pos == 2)
+	{
+		if((*a)->down->rel_pos == 3)
+			swap(a);
+		else
+			rotatedown(a);
+		break;
+	}
+	roptate(a);
+}
 // parse size as argc - 2  
-int	rotatemin(t_list **a, t_list **b, int size)
+int	selectionsort(t_list **a, t_list **b, int size)
 {
 	int		count;
 
@@ -58,34 +89,3 @@ int	rotatemin(t_list **a, t_list **b, int size)
 	}
 }
 
-// max mid min 
-// if min on top or bot  roptate
-// easy 25 lines fix but eww
-void	sort3(**a)
-{	
-	if(disorder(a) == 0)
-		break ;
-	if(disorder(a) == 2 )
-	{
-		if((*a)->rel_val == 0)
-		{
-			swap(a);
-			rotatedown(a);
-		}
-		else
-		{
-			swap(a);
-			rotatedown(a);
-		}
-		break;
-	}
-	if((*a)->rel_pos == 2)
-	{
-		if((*a)->down->rel_pos == 3)
-			swap(a);
-		else
-			rotatedown(a);
-		break;
-	}
-	roptate(a);
-}

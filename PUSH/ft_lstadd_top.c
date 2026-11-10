@@ -6,7 +6,7 @@
 /*   By: asuarez <asuarez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/13 15:33:50 by asuarez           #+#    #+#             */
-/*   Updated: 2026/11/10 16:23:11 by asuarez          ###   ########.fr       */
+/*   Updated: 2026/11/10 17:18:25 by asuarez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 // swap works fine rotate is a update of las wich is accecible fast 
 // 
 
-#include "libft.h"
+#include "pushswap.h"
 
 void	ft_lstadd_top(t_list **lst, t_list *new)
 {

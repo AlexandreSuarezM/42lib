@@ -1,14 +1,22 @@
 NAME = push_swap
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -I.
 
 SRC = main.c \
       disorder.c \
+      compare.c \
+      ft_lstadd_top.c \
       ft_lstclear.c \
+      ft_lstdelone.c \
       ft_lstnew.c \
-      ft_lstadd_to.c \
-      ft_lstdelone.c
+      ft_strcmp.c \
+      Operations/push.c \
+      Operations/rotate.c \
+      Operations/rotateup.c \
+      Operations/sabs.c \
+      sorts/RadixSort.c \
+      sorts/selectionsort.c
 
 OBJ = $(SRC:.c=.o)
 

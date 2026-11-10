@@ -6,10 +6,11 @@
 /*   By: asuarez <asuarez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/05 15:52:56 by asuarez           #+#    #+#             */
-/*   Updated: 2026/11/08 13:41:09 by asuarez          ###   ########.fr       */
+/*   Updated: 2026/11/10 16:23:06 by asuarez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+// given a list returns the metric of misplaced with.
 double	disorder(t_list *lst)
 {
 	int		total;
@@ -22,7 +23,7 @@ double	disorder(t_list *lst)
 	while(lst->down != aux)
 	{
 		if(compare(lst,lst->down) < 0)
-			msitakes++;
+			mistakes++;
 		total++;
 		lst = lst->down;
 	}

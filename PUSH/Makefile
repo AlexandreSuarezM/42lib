@@ -1,4 +1,3 @@
-
 NAME = push_swap
 
 CC = cc
@@ -18,13 +17,19 @@ HEADER = pushswap.h
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+	ar rcs $(NAME) $(OBJ)
 
 %.o: %.c $(HEADER)
 	$(CC) $(CFLAGS) -c $< -o $@
 
-main1: $(NAME)
-	./$(NAME) --complexity
+main1: $(NAME) main.c 
+	./$(NAME) --simple 
+main2: $(NAME) main.c 
+	./$(NAME) --medium 
+main3: $(NAME) main.c 
+	./$(NAME) --complex
+main4: $(NAME) main.c 
+	./$(NAME) --adaptive
 
 clean:
 	rm -f $(OBJ)

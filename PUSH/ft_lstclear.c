@@ -6,7 +6,7 @@
 /*   By: asuarez <asuarez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/14 14:14:03 by asuarez           #+#    #+#             */
-/*   Updated: 2026/11/05 15:22:05 by asuarez          ###   ########.fr       */
+/*   Updated: 2026/11/10 16:23:07 by asuarez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_lstclear(t_list **lst)
 	{
 		while (*lst)
 		{
-			free((*lst)->value);
+			free((*lst)->content);
 			aux = ((**lst).down);
 			free(*lst);
 			*lst = aux;

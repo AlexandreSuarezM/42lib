@@ -6,89 +6,86 @@
 /*   By: asuarez <asuarez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/09 15:59:34 by asuarez           #+#    #+#             */
-/*   Updated: 2026/11/09 17:54:54 by asuarez          ###   ########.fr       */
+/*   Updated: 2026/11/10 16:22:54 by asuarez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// tengo 1 rotacion ambos sentidos para max om min
-// si entre las rotaciones existe una rotacion menos costosa 
-// explico 
-// insertar un elemento custa rotacione 
-// hay que insertar buscando el minimo
-// las roptaciones 
-// qual es el numbero siguiente que se pueede inserir 
-// loop clocwise
-// loop counterwise
-// loop both 
-// loop for max loop for min 
-// that is a find element 
-// so each element returns a rotation number
-// so given (num of stack a) 
-// counts how many rotations costs  to b to fit it in 
-// and looping elements of a gives mes the cost of getting an element in a 
-
-// so i do the whole check to find the shortest operation every time 
-
-// loooks the cost of finding a in stack a rotate or reverse rotate 0 rotate 1 reverse rotate
-// remark that if the list makes it find max in more that int range it has a bug
-// count the fastest way to spot max.
-void	searchmax(t_list *stack_a)
+// find the shortest path to the max value of the stack parse size has argc -2 
+int	searchmax(t_list *stack_a, int size)
 {
 	t_list	*aux;
 	int		r;
 	
 	r = 0;
 	aux = stack_a;
-	while (stack_a->rel_pos != (argc - 2))
+	while (r < (size + 1) / 2)
 	{
+		if (stack_a->rel_pos == size)
+			return (r);
 		stack_a = stack_a->down;
 		r ++;
 	}
-	stack_a = aux;
-	while (stack_a->rel_pos != (argc - 2))
-	{
-		stack_a = stack_a->up;
-		r --;
-	}
-	return (r);
+	return (-r);
 }
 
-int	rotatemin(t_list **a, t_list **b)
+// parse size as argc - 2  
+int	rotatemin(t_list **a, t_list **b, int size)
 {
-	t_list	*a_aux;
-	t_list	*b_aux;
 	int		count;
 
 	count = 0;
-	a_aux = *a; 
-
-	// *a has to be the last 3 to make 
-	while (*a && )
+	while ((*a)->down->down->down)
 	{
-		if(searchmax(*a) = 0)
-			pusha;
-		if(searchmax(*a) < 0)
-			while ()
-				rotate
-			push
-		else()
-			while()
-				reverse_rotate
-			push
+		if(searchmax(*a, size - count) == 0)
+			push(a, b);
+		if(searchmax(*a, size - count) < 0)
+		{
+			while ((*a)->rel_pos != (size - count))
+				rotate(a);
+			push(a,b);
+		}
+		else
+		{
+			while((*a)->rel_pos != (size - count))
+				rotatedown(a);
+			push(a,b);
+		}
+		count ++;
 	}
 	while (*b)
 	{
-		pushb;
+		push(b,a);
 	}
-	// shit sorting 0 consideration n^2 scaling 
-	// can improve if the loop goes past the half we done once we find one the reverse rotate gets autocalculated .
-	// move a move a & b move b  b is sorted 
-	// to move b means its always on the side
-	// to move a is random
-	// to move both kk
-	// wtf pure euristic find min and cba
-	// Add the sort 3 looking for max its only a permulation 
+}
 
-
-
+// max mid min 
+// if min on top or bot  roptate
+// easy 25 lines fix but eww
+void	sort3(**a)
+{	
+	if(disorder(a) == 0)
+		break ;
+	if(disorder(a) == 2 )
+	{
+		if((*a)->rel_val == 0)
+		{
+			swap(a);
+			rotatedown(a);
+		}
+		else
+		{
+			swap(a);
+			rotatedown(a);
+		}
+		break;
+	}
+	if((*a)->rel_pos == 2)
+	{
+		if((*a)->down->rel_pos == 3)
+			swap(a);
+		else
+			rotatedown(a);
+		break;
+	}
+	roptate(a);
 }

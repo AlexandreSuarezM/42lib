@@ -9,82 +9,50 @@
 int	main(int argc, char **argv)
 {
 	int	i;
-
 	t_list	*new;
 	t_list	*alst;
 	t_list	*aux;
 	t_list	*blst;
 
-	i = 1;
-	if(argc < 1)
+	if(argc < 2)
 		return (0);
-
-	while (i < argv)
-	{
-		// create with the value 
+	i = 2;
+	while (i < argc)
+	{ 
 		new = ft_lstnew((argv[i]));
-		// add on the top of the stack 
 		ft_lstadd_top(&alst, new);
+		i++;
 	}
-
-	// stack b gets initialized with a lstadd 
-	// sorting 
-
-
 	new = alst;
 	while(new->down)
 	{
 		aux = new->down;
 		while (aux)
 		{
-			if (aux->value == new->value || isnum(new->value))
-				return (1);
-			if (bigger(aux->value,new->value) < 0)
+			if (aux->value == new->value)
+				break;
+			if (compare(aux->value,new->value) < 0)
 				new->rel_pos++;
 			aux = aux->down;
 		}
 		new = new->down;
 	}
-	if (isnum(aux->value))
-		return (1);
-	// now we get the index of the max element no need tho its argcv
-	//ft_lstsize(alst);
+	if (argv[1] == "simple")
+		selectionsort(&a, &b);
+	if (argv[1] == "medium")
+	//Chunk-based sorting — O(n√n).
+	if (argv[1] == "complex")
+		RadixSort(&alst,&blst, argc - 2);
+	if (argv[1] == "adaptive")
+	// adaptive
+	else
+		return (0);
 	
-
 	ft_lstclear(&alst);
 	return (0);
 }
-// adjust the argc counts because the --tipe takes on slot
-
-if (argv[1] == "")
-// algo
-if (argv[1] == "")
-// algo
-if (argv[1] == "complex")
-	RadixSort(&alst,&blst);
-else
 
 
 
-// after the if values are nums and no equal
-// if same len return the strcmp wich si the bigger
-// else the longest 
-// positive first is the bigger cant be 0 discardted on previous while 
-int bigger(char  *first, char *second)
-{
-	if(first[0] == '-' && second[0] != '-')
-		return (-1);
-	if(first[0] != '-' && second[0] == '-')
-		return (1);
-	if(first[0] == '-' && second[0] == '-')
-	{
-		if(ft_strlen(first) == ft_strlen(second))
-			return ((int)ft_strcmp(second, first));
-		return((int)(ft_strlen(second) - ft_strlen(first)));	
-	}	
-	
-	if(ft_strlen(first) == ft_strlen(second))
-		return (ft_strcmp(first, second));
-	return(ft_strlen(first) - ft_strlen(second));
-}
+
 

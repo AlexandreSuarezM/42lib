@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_to.c                                     :+:      :+:    :+:   */
+/*   ft_lstadd_top.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asuarez <asuarez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/13 15:33:50 by asuarez           #+#    #+#             */
-/*   Updated: 2026/11/04 21:57:04 by asuarez          ###   ########.fr       */
+/*   Updated: 2026/11/10 16:23:11 by asuarez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 #include "libft.h"
 
-void	ft_lstadd_up(t_list **lst, t_list *new)
+void	ft_lstadd_top(t_list **lst, t_list *new)
 {
 	if (!new || !lst)
 		return ;

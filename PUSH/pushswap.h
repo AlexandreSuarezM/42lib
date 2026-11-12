@@ -6,7 +6,7 @@
 /*   By: asuarez <asuarez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/04 16:35:59 by asuarez           #+#    #+#             */
-/*   Updated: 2026/11/10 21:12:28 by asuarez          ###   ########.fr       */
+/*   Updated: 2026/11/11 14:21:32 by asuarez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ void	push(t_list **, t_list **);
 void	rotatedown(t_list **lst);
 void	rotateup(t_list **lst);
 void	swap(t_list **lst);
-int	selectionsort(t_list **a, t_list **b, int size);
+int		selectionsort(t_list **a, t_list **b, int size);
 double	disorder(t_list *lst);
-int	compare(char *a, char *b);
-int	ft_strcmp(char *s1, char *s2);
+int		compare(char *a, char *b);
+int		ft_strcmp(char *s1, char *s2);
 void	Radix(t_list **a, t_list **b, int size);
 
 

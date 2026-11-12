@@ -21,15 +21,11 @@ Run make on the make file
 Get the .a 
 Compialtion:
 Each one handles a diferent complexity algoritm
-** make main1 **
-	o(n^2)
-** make main2 **
-	O(sqrt(n))
-** make main3 **
-	O(n log(n))
-** make main4 **
-	Multipurpose
-	
+** make main
+
+./exe --simple
+
+
 checkers benchmakr
 
 
@@ -63,3 +59,35 @@ Resources:
 IA explication of the sorting algortims 
 Debugging
 Using for optimal learning and sharting with peers
+
+
+
+Concerns 
+
+Moulinete i dont know the moulinete test 
+so i dont know if it will look for intefers int the struct 
+if it does it will ko and need to swap it for atoi  and the comparation becoms int comp 
+
+If it does not ok 
+
+
+ my push swap structs handle chars instead of numbers 
+it clears the number like atoi 
+but keepts the char numerical representation 
+allowing bigger numbers tha ints to be sorted 
+and moving them efitiently via coordinated compresion 
+but i dont know if moulinette will lookk for integers and ko 
+
+
+
+feedback propuesto
+
+incosistencies in the subjects numbers ->> ints 
+either redundanci elimination or congruene between orders   A - B 
+
+
+
+Biddirectional looped list
+to acces easily bottom 
+insetead of storing it and doint the whole llop to find it
+

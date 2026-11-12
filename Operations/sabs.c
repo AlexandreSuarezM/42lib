@@ -6,7 +6,7 @@
 /*   By: asuarez <asuarez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/04 20:14:08 by asuarez           #+#    #+#             */
-/*   Updated: 2026/11/11 15:37:54 by asuarez          ###   ########.fr       */
+/*   Updated: 2026/11/12 18:31:37 by asuarez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,38 +26,20 @@ void	swap(t_list **lst)
 
 	if (!lst || !(*lst) || !(*lst)->down)
 		return ;
-	// first linkers save queue
-	aux = (*lst)->up;      
+	// save queue node
+	aux = (*lst)->up; 
+	// top node up now points to the switched node     
 	(*lst)->up = (*lst)->down;
+	// bottom part of the node now points to what the bottom node points down
+	// first node points well
 	(*lst)->down = (*lst)->down->down;
-	aux->down = *lst;
-	//now the postion of A is good 
-	// B positions 
+	// new top of the stack is b wich was accesed via top up
 	*lst = (*lst)->up;
+	// update queue node now up to b  
+	aux->up = *lst;
+	// b down now poits to a    rpevious b up
 	(*lst)->down = (*lst)->up;
-	(*lst)->up = aux;
+	// b up is queue
+	(*lst)->up = aux;	
 }
 
-//
-//
-//aux = lst->up;
-//lst->up = lst->down
-//lst->down = lst->down->down
-//// aux last in list
-//// b node points up to a and bot top c 
-//// bot up points 
-//// make c top point ot a 
-//// c was lst -> down ->down
-//// but lst->down is now ->down -.down
-//lst->down->up = lst;
-////c points a a points c and b
-//// b becomes lst 
-//lst = lst->up; 
-//aux->down = lst
-//// b points to queue and a 
-//// a is on top of b  
-//lst->down = lst->up;
-//lst->up = aux;
-//
-//()
-//

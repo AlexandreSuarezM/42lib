@@ -6,7 +6,7 @@
 /*   By: asuarez <asuarez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/09 15:59:34 by asuarez           #+#    #+#             */
-/*   Updated: 2026/11/10 17:17:16 by asuarez          ###   ########.fr       */
+/*   Updated: 2026/11/12 18:49:12 by asuarez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,42 +28,38 @@ static	int	searchmax(t_list *stack_a, int size)
 	}
 	return (-r);
 }
-// max mid min 
-// if min on top or bot  roptate
-// easy 25 lines fix but eww
-static	void	sort3(**a)
+
+//ewwwww 
+static	void	sort3(t_list **a)
 {	
-	if(disorder(a) == 0)
-		break ;
-	if(disorder(a) == 2 )
+	if ((*a)->rel_pos > ((*a)->down->rel_pos))
 	{
-		if((*a)->rel_val == 0)
+		if((*a)->rel_pos == 2)
+			rotatedown(a);
+		if((*a)->down->down->rel_pos == 2 )
+		{
+			swap(a);
+			rotateup(a);
+		}
+	}
+	else
+	{
+		if((*a)->rel_pos == 2)
+			swap(a);
+		else if((*a)->down->rel_pos == 2)
 		{
 			swap(a);
 			rotatedown(a);
 		}
 		else
-		{
-			swap(a);
-			rotatedown(a);
-		}
-		break;
+			rotateup(a);
 	}
-	if((*a)->rel_pos == 2)
-	{
-		if((*a)->down->rel_pos == 3)
-			swap(a);
-		else
-			rotatedown(a);
-		break;
-	}
-	roptate(a);
 }
 // parse size as argc - 2  
-int	selectionsort(t_list **a, t_list **b, int size)
+void	selectionsort(t_list **a, t_list **b, int size)
 {
 	int		count;
-
+write(1,"Selec\n",6);
 	count = 0;
 	while ((*a)->down->down->down)
 	{
@@ -72,7 +68,7 @@ int	selectionsort(t_list **a, t_list **b, int size)
 		if(searchmax(*a, size - count) < 0)
 		{
 			while ((*a)->rel_pos != (size - count))
-				rotate(a);
+				rotateup(a);
 			push(a,b);
 		}
 		else
@@ -83,9 +79,8 @@ int	selectionsort(t_list **a, t_list **b, int size)
 		}
 		count ++;
 	}
+	sort3(a);
 	while (*b)
-	{
 		push(b,a);
-	}
 }
 

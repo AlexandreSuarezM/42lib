@@ -1,4 +1,5 @@
-NAME = push_swap
+NAME = push_swap.a\
+
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -I.
@@ -16,28 +17,26 @@ SRC = main.c \
       Operations/rotateup.c \
       Operations/sabs.c \
       sorts/RadixSort.c \
-      sorts/selectionsort.c
+	  showlist.c \
+      sorts/selectionsort.c \
+	  ft_strlen.c \
+	  ft_lstsize.c
 
 OBJ = $(SRC:.c=.o)
+
 
 HEADER = pushswap.h
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
+$(NAME): $(OBJ) $(HEADER)  $(NAME2)
 	ar rcs $(NAME) $(OBJ)
 
 %.o: %.c $(HEADER)
 	$(CC) $(CFLAGS) -c $< -o $@
 
-main1: $(NAME) main.c 
-	./$(NAME) --simple 
-main2: $(NAME) main.c 
-	./$(NAME) --medium 
-main3: $(NAME) main.c 
-	./$(NAME) --complex
-main4: $(NAME) main.c 
-	./$(NAME) --adaptive
+main: $(NAME) main.c $(HEADER)
+	cc main.c  $(NAME) -o pushexe
 
 clean:
 	rm -f $(OBJ)

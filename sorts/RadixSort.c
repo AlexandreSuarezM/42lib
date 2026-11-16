@@ -6,7 +6,7 @@
 /*   By: asuarez <asuarez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/08 16:44:08 by asuarez           #+#    #+#             */
-/*   Updated: 2026/11/12 19:32:27 by asuarez          ###   ########.fr       */
+/*   Updated: 2026/11/16 20:16:39 by asuarez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,35 +44,53 @@ static int	binary(int num, int byte)
 }
 // size is the amount range of coordinated compresion 
 // Does radix sort with list a & b
+// rotate while stack len 
+// stack len 0 
+// size is the argc elements
+// if its 0 no elements 
+// stakc len gives szie of a 
+// we rotate or push each element
 void	Radix(t_list **a, t_list **b, int size)
 {
 	int	byte;
 	int	stack_len;
-
-	stack_len = 0;
 	write(1,"Radix\n",6);
+	stack_len = 0;
+
 	byte = 0;
+
 
 	if(size < 1)
 		return;
 	while(size != 0)
 	{
+	
 		stack_len = ft_lstsize(*a);
 		while (stack_len > 0)
 		{
 			stack_len --;
+				printf("size \t%d \n stack  len %d\n",size, stack_len);
 			if(binary((*a)->rel_pos, byte))
+			{
+				write(1,"rotate\n", 8);
 				rotateup(a);
+			}
 			else
+			{	
+				write(1,"rotate\n", 8);
 				push(a, b);
-		}
+			}
+		
+			}
 		size /= 2;
+		printf("%d\n",size);
 		byte ++;
 		while(*b)
+		{
+			write(1, "here", 5 );
 			push(b, a);
+		}
+		write(1, "here", 5 );
 	}
-	
 }
-
-
 

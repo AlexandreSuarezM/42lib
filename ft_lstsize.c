@@ -6,7 +6,7 @@
 /*   By: asuarez <asuarez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/13 15:55:05 by asuarez           #+#    #+#             */
-/*   Updated: 2026/11/12 19:33:42 by asuarez          ###   ########.fr       */
+/*   Updated: 2026/11/16 17:27:36 by asuarez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,11 @@ unsigned int	ft_lstsize(t_list *lst)
 	aux = lst;
 	if (!lst)
 		return (0);
-	count_nodes = 0;
+	count_nodes = 1;
 	while (lst->down != aux)
 	{
 		lst = lst->down;
 		count_nodes++;
 	}
-	count_nodes++;
 	return (count_nodes);
 }

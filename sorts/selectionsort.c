@@ -6,7 +6,7 @@
 /*   By: asuarez <asuarez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/09 15:59:34 by asuarez           #+#    #+#             */
-/*   Updated: 2026/11/12 18:49:12 by asuarez          ###   ########.fr       */
+/*   Updated: 2026/11/16 18:33:57 by asuarez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,9 @@
 // find the shortest path to the max value of the stack parse size has argc -2 
 static	int	searchmax(t_list *stack_a, int size)
 {
-	t_list	*aux;
 	int		r;
 	
 	r = 0;
-	aux = stack_a;
 	while (r < (size + 1) / 2)
 	{
 		if (stack_a->rel_pos == size)

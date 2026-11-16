@@ -6,7 +6,7 @@
 /*   By: asuarez <asuarez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/04 21:17:47 by asuarez           #+#    #+#             */
-/*   Updated: 2026/11/10 21:16:44 by asuarez          ###   ########.fr       */
+/*   Updated: 2026/11/16 20:13:21 by asuarez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,5 @@
 // Pushes the first element from to 
 void	push(t_list **from,t_list **to)
 {
-	ft_lstadd_top(from, *to);
-	ft_lstdelfirst(from);
+	ft_lstadd_top(to, popfirst(from));
 }

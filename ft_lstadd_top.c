@@ -6,7 +6,7 @@
 /*   By: asuarez <asuarez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/13 15:33:50 by asuarez           #+#    #+#             */
-/*   Updated: 2026/11/16 20:08:06 by asuarez          ###   ########.fr       */
+/*   Updated: 2026/11/17 15:54:21 by asuarez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,21 +21,20 @@
 
 #include "pushswap.h"
 
-void	ft_lstadd_top(t_list **lst, t_list *new)
+void ft_lstadd_top(t_list **lst, t_list *new)
 {
-	if (!new || !lst)
-		return ;
-	if(!*lst)
-	{
-		new->up = new;
-		new->down = new;
-		*lst = new;
-		return ;
-	}
-	new->down = *lst;
-	new->up = (*lst)->up;
-	(*lst)->up->down = new;
-	(*lst)->up = new;
-	*lst = new;
+    if (!lst || !new)
+        return;
+    if (!*lst)
+    {
+        new->up = new;
+        new->down = new;
+        *lst = new;
+        return;
+    }
+    new->down = *lst;
+    new->up = (*lst)->up;
+    (*lst)->up->down = new;
+    (*lst)->up = new;
+    *lst = new;
 }
-

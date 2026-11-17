@@ -6,13 +6,17 @@
 /*   By: asuarez <asuarez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/04 21:17:47 by asuarez           #+#    #+#             */
-/*   Updated: 2026/11/16 20:13:21 by asuarez          ###   ########.fr       */
+/*   Updated: 2026/11/17 15:53:44 by asuarez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 // Pushes the first element from to 
-void	push(t_list **from,t_list **to)
+void push(t_list **from, t_list **to)
 {
-	ft_lstadd_top(to, popfirst(from));
+    t_list *node;
+    node = popfirst(from);
+    if (!node)
+        return;
+    ft_lstadd_top(to, node);
 }

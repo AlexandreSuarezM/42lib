@@ -6,11 +6,12 @@
 /*   By: asuarez <asuarez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/08 16:44:08 by asuarez           #+#    #+#             */
-/*   Updated: 2026/11/16 20:16:39 by asuarez          ###   ########.fr       */
+/*   Updated: 2026/11/17 17:52:38 by asuarez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
+// struct return based or code based with ineger void return 
 // convert rel _ pos to binary
 // loop the list refeed to the byte 1 up to max then send back 
 // void recober the n byte of the rel pos in bynary 
@@ -22,20 +23,14 @@
 // 2nd while no need to num != 0 reason num is never 0 because we pop on bytes
 static int	binary(int num, int byte)
 {
-	int	aux;
-	int	count;
 
-	aux = num;
-	count = 0;
-	while (aux != 0)
-	{
-		count ++;
-		aux /= 2;
-	}
-	byte = count - byte;
-	if (byte < 1 || byte > count)
-    	return (0);
-	while(num != 0 && byte != 0)
+	// total de bites de num
+
+	// queremos la posicion 0 1 2 3 si count es 4 tenemos 5 ellementos el byte dice de los 5 elementos tenemos -bytes
+	// start yte 0 i go u p if num es small and past byes 0    1 is 1 and if byte is 0 thenn 1 
+	// if num =0 cunt 0 its negative  if num byte i  bytes are pased 
+
+	while(byte != 0)
 	{
 		byte --;
 		num /= 2;
@@ -50,47 +45,40 @@ static int	binary(int num, int byte)
 // if its 0 no elements 
 // stakc len gives szie of a 
 // we rotate or push each element
-void	Radix(t_list **a, t_list **b, int size)
+
+void Radix(t_list **a, t_list **b, int size)
 {
-	int	byte;
-	int	stack_len;
-	write(1,"Radix\n",6);
-	stack_len = 0;
+    int byte;
+    int stack_len;
+    int max_bits;
 
-	byte = 0;
+    if (size < 1)
+        return;
 
+    max_bits = 0;
+    while ((size - 1) != 0)
+    {
+        size /= 2;
+        max_bits++;
+    }
 
-	if(size < 1)
-		return;
-	while(size != 0)
-	{
-	
-		stack_len = ft_lstsize(*a);
-		while (stack_len > 0)
-		{
-			stack_len --;
-				printf("size \t%d \n stack  len %d\n",size, stack_len);
-			if(binary((*a)->rel_pos, byte))
-			{
-				write(1,"rotate\n", 8);
-				rotateup(a);
-			}
-			else
-			{	
-				write(1,"rotate\n", 8);
-				push(a, b);
-			}
-		
-			}
-		size /= 2;
-		printf("%d\n",size);
-		byte ++;
-		while(*b)
-		{
-			write(1, "here", 5 );
-			push(b, a);
-		}
-		write(1, "here", 5 );
-	}
+    byte = 0;
+    while (byte < max_bits)
+    {
+        stack_len = ft_lstsize(*a);
+
+        while (stack_len > 0)
+        {
+            if (binary((*a)->rel_pos, byte))
+                rotateup(a);
+            else
+                push(a, b);
+            stack_len--;
+        }
+
+        while (*b)
+            push(b, a);
+
+        byte++;
+    }
 }
-

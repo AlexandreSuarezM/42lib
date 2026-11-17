@@ -8,3 +8,5 @@
 // add -- bench and usage alter all the argv's and cases
 // implemen adapive
 // do checkers   read(1, ) < amybe ?
+// readme
+// makefile

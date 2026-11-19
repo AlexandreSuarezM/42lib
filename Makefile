@@ -1,12 +1,12 @@
 NAME = push_swap.a\
 
-
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -I.
 
 SRC = main.c \
       disorder.c \
       compare.c \
+	  ft_atoi.c \
       ft_lstadd_top.c \
       ft_lstclear.c \
       ft_lstdelone.c \
@@ -21,18 +21,33 @@ SRC = main.c \
       sorts/selectionsort.c \
 	  ft_strlen.c \
 	  ft_lstsize.c
-
+ 
 OBJ = $(SRC:.c=.o)
 
+SRC_PRINT = ft_conv.c
+			ft_hextoa.c
+			ft_hextoa_upper.c
+			ft_lstsize.c
+			ft_pointtoa.c
+			ft_printf.c
+			ft_printf.h
+			ft_putcharc.c
+			ft_putnbr_signed.c
+			ft_putnbr_unsigned.c
+			ft_putstr.c
+			ft_strcmp.c
+
+OBJ_PRINT = $(SRC_PRINT:.c=.o)
 
 HEADER = pushswap.h
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(HEADER)  $(NAME2)
-	ar rcs $(NAME) $(OBJ)
+$(NAME): $(OBJ) $(HEADER)  $(NAME2) 
+	ar rcs $(NAME) $(OBJ) $(OBJ_PRINT)
 
-%.o: %.c $(HEADER)
+
+%.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 main: $(NAME) main.c $(HEADER)

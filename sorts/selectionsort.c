@@ -6,7 +6,7 @@
 /*   By: asuarez <asuarez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/09 15:59:34 by asuarez           #+#    #+#             */
-/*   Updated: 2026/11/16 18:33:57 by asuarez          ###   ########.fr       */
+/*   Updated: 2026/11/19 21:25:13 by asuarez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,9 @@ void	selectionsort(t_list **a, t_list **b, int size)
 {
 	int		count;
 write(1,"Selec\n",6);
+
+	if (disorder(t_list *a))
+		return;
 	count = 0;
 	while ((*a)->down->down->down)
 	{

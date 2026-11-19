@@ -6,7 +6,7 @@
 /*   By: asuarez <asuarez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/04 16:35:59 by asuarez           #+#    #+#             */
-/*   Updated: 2026/11/17 15:54:54 by asuarez          ###   ########.fr       */
+/*   Updated: 2026/11/19 19:11:47 by asuarez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,19 @@
 
 typedef struct s_list
 {
-	char			*content;
+	int				content;
 	int				rel_pos;     
 	struct s_list	*up;
 	struct s_list	*down;
 }	t_list;
 
+char	**ft_split(char const *s, char c);
+int		ft_atoi(const char *nptr, t_list **lst);
 t_list	*popfirst(t_list **lst);
 unsigned int	ft_lstsize(t_list *lst);
 void	showlist(t_list *a);
 size_t	ft_strlen(const char *s);
-t_list	*ft_lstnew(char *content);
+t_list	*ft_lstnew(int num);
 void	ft_lstclear(t_list **lst);
 void	ft_lstadd_top(t_list **lst, t_list *new);
 double	disorder(t_list *lst);

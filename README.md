@@ -91,3 +91,10 @@ Biddirectional looped list
 to acces easily bottom 
 insetead of storing it and doint the whole llop to find it
 
+
+
+
+// main sends argv to static void	algo_decision() to redirect to the uncions 
+// now add 
+// 1 a delete whole 
+// a convert and absorve and check 

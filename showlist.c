@@ -1,22 +1,20 @@
 #include "pushswap.h"
 
+// print for 1 listers and print the list using the fact that its ordered
 void showlist(t_list *a)
 {
 	t_list	*aux;
 
 	if (a == a->down)
 	{
-		write(1, a->content, ft_strlen(a->content));
+		ft_printf("%d\n",a->content);
 		return ;
 	}
-	aux = a;
-	while (aux->down != a)
+
+	while ((a->content) > (a->down->content))
 	{
-		write(1, aux->content, ft_strlen(aux->content));
-		write(1, "\n", 1);
+		ft_printf("%d\n",a->content);
 		aux = aux->down;
 	}
-	write(1, aux->content, ft_strlen(aux->content));
-	write(1, "\n", 1);
 	return ;
 }

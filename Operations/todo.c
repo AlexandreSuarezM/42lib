@@ -10,3 +10,6 @@
 // do checkers   read(1, ) < amybe ?
 // readme
 // makefile
+// -- complex if no wat 
+
+

@@ -6,7 +6,7 @@
 /*   By: asuarez <asuarez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/04 21:17:47 by asuarez           #+#    #+#             */
-/*   Updated: 2026/11/17 15:53:44 by asuarez          ###   ########.fr       */
+/*   Updated: 2026/11/20 13:17:57 by asuarez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,4 +19,5 @@ void push(t_list **from, t_list **to)
     if (!node)
         return;
     ft_lstadd_top(to, node);
+	
 }

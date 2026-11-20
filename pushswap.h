@@ -6,7 +6,7 @@
 /*   By: asuarez <asuarez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/04 16:35:59 by asuarez           #+#    #+#             */
-/*   Updated: 2026/11/19 19:11:47 by asuarez          ###   ########.fr       */
+/*   Updated: 2026/11/20 13:17:56 by asuarez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,5 @@ int	ft_putcharc(char c);
 int	ft_putnbr_signed(int n, int count);
 int	ft_putnbr_unsigned(unsigned int n, int count);
 int	ft_putstr(const char *str);
-
 
 #endif

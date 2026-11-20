@@ -6,30 +6,32 @@
 /*   By: asuarez <asuarez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/10 20:36:57 by asuarez           #+#    #+#             */
-/*   Updated: 2026/11/19 21:25:16 by asuarez          ###   ########.fr       */
+/*   Updated: 2026/11/20 13:18:01 by asuarez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "pushswap.h"
 
 
-// if string compare is positive overflow happende
-// unsigned has defined behaviour on overflows
-// check the overflow with that one
-// make the cumulative 
+
+// unsigned has defined behaviour on overflows unlike int
 // check with int max and intt max + 1 for + and -1
+// rt is the positive integer that we stack
+// rt over or underflows.
 static void data_overflow(unsigned int rt, char nptr, int sign, t_list **lst)
 {
 	unsigned int	num;
 
-	num = rt * 10 + (unsigned int)(nptr - '0');
+	num = (unsigned int)rt * 10 + (unsigned int)(nptr - '0');
 	if (sign == -1)
+	{
 		if(num > (((unsigned int)(-1) / 2) + 1))
 		{
 			write (2, "Error\n", 6);
 			ft_lstclear(lst);
 			exit (1);
 		}
+	}
 	else
 	{
 		if(num > (((unsigned int)(-1) / 2)))
@@ -41,7 +43,8 @@ static void data_overflow(unsigned int rt, char nptr, int sign, t_list **lst)
 	}
 }
 
-static	int	data_nonum(int r, int lastdigit, t_list **lst)
+// atoi returns int always this cuts the proces if the number misses or 
+static	int	data_nonum(int r, char lastdigit, char eon t_list **lst)
 {	
 	if (r == 0 && lastdigit != 0)
 	{
@@ -49,7 +52,7 @@ static	int	data_nonum(int r, int lastdigit, t_list **lst)
 		ft_lstclear(lst);
 		exit(1);
 	}
-	if (isnum())
+	if (isnum(lastdigit) || eon != '\0')
 	{
 		write (2, "Error\n", 6);
 		ft_lstclear(lst);
@@ -82,7 +85,7 @@ int	ft_atoi(const char *nptr,t_list **lst)
 		rt = rt * 10 + (int)(nptr[i] - '0');
 		i++;
 	}
-	data_nonum(rt, nptr[i - 1], lst)
+	data_nonum(rt, nptr[i - 1], nptr[i], lst);
 	return (rt * sign);
 }
 

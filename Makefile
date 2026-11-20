@@ -24,21 +24,6 @@ SRC = main.c \
  
 OBJ = $(SRC:.c=.o)
 
-SRC_PRINT = ft_conv.c
-			ft_hextoa.c
-			ft_hextoa_upper.c
-			ft_lstsize.c
-			ft_pointtoa.c
-			ft_printf.c
-			ft_printf.h
-			ft_putcharc.c
-			ft_putnbr_signed.c
-			ft_putnbr_unsigned.c
-			ft_putstr.c
-			ft_strcmp.c
-
-OBJ_PRINT = $(SRC_PRINT:.c=.o)
-
 HEADER = pushswap.h
 
 all: $(NAME)

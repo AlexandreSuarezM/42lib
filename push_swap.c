@@ -6,11 +6,16 @@
 /*   By: asuarez <asuarez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/10 17:20:27 by asuarez           #+#    #+#             */
-/*   Updated: 2026/11/19 21:28:10 by asuarez          ###   ########.fr       */
+/*   Updated: 2026/11/20 14:42:21 by asuarez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
+
+//flag snifer detects the flags counts the flags 
+//because remembering the flag and checking it is the same
+// we keep no track of were the flah was found
+
 
 static void	algo_decision(char **argv)
 {
@@ -83,7 +88,8 @@ int	main(int argc, char **argv)
 	//else
 	//	return (0);
 
-	showlist(alst);
+	//showlist(alst);
+	printf("%d\n",dis)
 	
 	ft_lstclear(&alst);
 	return (0);
@@ -178,4 +184,25 @@ static void check_dupes(t_list **alst)
 		}
 		aux = aux->down;
 	}
+}
+
+
+int    check_args(int argc, char **argv)
+{
+    int i;
+    int pass;
+
+    i = 1;
+	pass = 0;
+    while (i < argc)
+    {
+        if (!ft_strcmp(argv[i], "--simple")
+			|| !ft_strcmp(argv[i], "--complex")
+            || !ft_strcmp(argv[i], "--mediu")
+            || !ft_strcmp(argv[i], "--adaptive"))
+            || 
+        else if (!ft_strcmp(argv[i], "--bench"))
+            bench = -bench;
+        i++;
+    }
 }

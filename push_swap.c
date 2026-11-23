@@ -6,7 +6,7 @@
 /*   By: asuarez <asuarez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/10 17:20:27 by asuarez           #+#    #+#             */
-/*   Updated: 2026/11/23 13:24:42 by asuarez          ###   ########.fr       */
+/*   Updated: 2026/11/23 16:04:08 by asuarez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,25 +16,31 @@
 //because remembering the flag and checking it is the same
 // we keep no track of were the flah was found
 
+// redirects to the desired algoritm 
+// this should loop the args and redirect to the desired algortims
+// looping the arg
 
-static void	algo_decision(char **argv)
-{
-	else if (argv[0] == "--complex" || argv[1] == "--complex")
-		// call complex 
-	else if (argv[0] == "--medium" || argv[1] == "--medium")
-	 // meidum
-	else if (argv[0] == "--simple" || argv[1] == "--simple")
-	// simple
-	else if (argv[0] == "--adaptive" || argv[1] == "--adaptive")
-	else 
-	{
-		return;
-		write(2, "Error\n", 6);
-	}
-	if (argv[0] == "--bench" || argv[1] == "--bench")
-		// call bench
-}
-
+// once the program is well set look the 
+//static void	algo_decision(char **argv)
+//{
+//	while ()
+//	else if (argv[i] == "--complex" )
+//	// call complex 
+//	else if (argv[i] == "--medium" )
+//	// meidum
+//	else if (argv[i] == "--simple" )
+//	// simple
+//	else if (argv[i] == "--adaptive")
+//	else 
+//	{
+//		return;
+//		write(2, "Error\n", 6);
+//	}
+//	if (argv[0] == "--bench" || argv[1] == "--bench")
+//		// call bench
+//}
+// take the input
+// 
 int	main(int argc, char **argv)
 {
 	int	list_size;
@@ -59,7 +65,7 @@ int	main(int argc, char **argv)
 
 
 
-	if (ft_strcmp(argv[1],"--complex") == 0)
+	
 		Radix(&alst,&blst, argc - 2);
 	//if (ft_strcmp(argv[1],"--simple") == 0)
 	//write(1, "Selec\n", 6 );
@@ -80,6 +86,7 @@ int	main(int argc, char **argv)
 	return (0);
 }
 
+// if no parameters the prompt must be returned as it comes 
 
 //  funcion qu eme tome los argumentos
 //  --bench  "1  3   6 " 12     "" 
@@ -88,14 +95,13 @@ int	main(int argc, char **argv)
 
 
 // 
-void	init_list(char **argv)
+static void	init_list(char **argv)
 {
 	size_t	i;
 	char 	**args;
 	size_t	j;
-	static complex;
-	static bench;
-
+	static flag[5];   // the flags are ordered has simple medium complex adaptive bench
+	
 	i = 1;
 	while (argv[i])
 	{
@@ -103,7 +109,8 @@ void	init_list(char **argv)
 		j = 0;
 		while (args[j])
 		{
-			if(skypflag(&j, args[j]))
+			if(skypflag(args[j]))
+				j++;
 			else
 			{
 				ft_lstmew(ft_atoi(args[j]));
@@ -113,32 +120,35 @@ void	init_list(char **argv)
 		}
 		i++;
 	}
+	if(complex == 0)  // if no arguments return the same promp wich is char * separted by space.
+	{
+		while(argv[i])
+			ft_printf("%s' '",argv[i]);
+	}
 }
 
-// detects flag if flag is read memory if flag and skpy the pointer
-// elongate the if compares the incoming arg 
-// moves the index if skyp
-static int skypflag(int *i, char *arg)
+// is args a flag
+// did we have flags 
+// are the flags okey
+// 
+static int skypflag(char *arg)
 {
 	if (ft_strcmp(arg, "--complex") || ft_strcmp(arg, "--medium"))
 	{
-		complex++;
-		*i = *i++;
+		flag[2]++;
 		return (1);
 	}
 	if (ft_strcmp(arg, "--simple") || ft_strcmp(arg, "--adaptive"))
 	{
-		complex++;
-		*i = *i++;
+		flag[0]++;
 		return (1);
 	}
 	if (ft_strcmp(arg, "--bench"))
 	{
-		bench++;
-		*i = *i++;
+		flag[4]++;
 		return (1);
 	}
-	if (complex > 1 || bench > 1)
+	if (flag[0] + flag[1] + flag[2] + flag[3] > 1 || flag[5] > 1)
 	{
 		ft_lstclear(); // free de los que tenga 
 		write(2, "Error\n", 6);

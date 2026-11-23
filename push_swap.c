@@ -6,7 +6,7 @@
 /*   By: asuarez <asuarez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/10 17:20:27 by asuarez           #+#    #+#             */
-/*   Updated: 2026/11/20 14:42:21 by asuarez          ###   ########.fr       */
+/*   Updated: 2026/11/23 13:24:42 by asuarez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,28 +51,13 @@ int	main(int argc, char **argv)
 	alst = NULL;
 	blst = NULL;
 
-// create list 
+	// create list 
 	// check dupes and rel vas 
-	//calculo del rel pos como vamos a loopear por cada elemento de la lista los anteriores add el poco eficiente check
-	while(list_size - 2 > 0)
-	{
-		aux = new->down; 
-		while (aux != new)
-		{
-			if (aux->content == new->content)
-			{
-				write(2,"Error\n",6);
-				return (1);
-			}
-				if (aux->content < new->content) 
-					(new->rel_pos)++;
-			aux = aux->down;
-		}
-		new = new->down;
-		list_size--;
-	}
-	//recover full roation
-	new = new->down;
+	// calculo del rel pos como vamos a loopear por cada elemento de la lista los anteriores add el poco eficiente check
+	// list size -1 name -flag -optional flag.
+
+
+
 
 	if (ft_strcmp(argv[1],"--complex") == 0)
 		Radix(&alst,&blst, argc - 2);
@@ -102,29 +87,29 @@ int	main(int argc, char **argv)
 
 
 
-// parsing from data to model
-
-// gets argv
-
-void init_list(char **argv)
+// 
+void	init_list(char **argv)
 {
 	size_t	i;
-	char **args;
+	char 	**args;
 	size_t	j;
+	static complex;
+	static bench;
 
 	i = 1;
 	while (argv[i])
-	{ 
-		// args toma los argumentos de cada flag on each args we get it  
-		// DOES split args reset ?? if not do it
+	{
 		args = ft_split(argv[i]);
 		j = 0;
 		while (args[j])
 		{
-			skypflag(&i, args[j]); // skip nons and chec the static might be wrong
-			ft_lstmew(ft_atoi(args[j]));
-			ft_lstadd_top(alst); // direction o alst 
-			i++;
+			if(skypflag(&j, args[j]))
+			else
+			{
+				ft_lstmew(ft_atoi(args[j]));
+				ft_lstadd_top(alst); // direction o alst 
+				j++;
+			}
 		}
 		i++;
 	}
@@ -132,25 +117,26 @@ void init_list(char **argv)
 
 // detects flag if flag is read memory if flag and skpy the pointer
 // elongate the if compares the incoming arg 
-static void skypflag(int *i, char *arg)
+// moves the index if skyp
+static int skypflag(int *i, char *arg)
 {
-	static complex;
-	static bench;
-
 	if (ft_strcmp(arg, "--complex") || ft_strcmp(arg, "--medium"))
 	{
 		complex++;
 		*i = *i++;
+		return (1);
 	}
 	if (ft_strcmp(arg, "--simple") || ft_strcmp(arg, "--adaptive"))
 	{
 		complex++;
 		*i = *i++;
+		return (1);
 	}
 	if (ft_strcmp(arg, "--bench"))
 	{
-		complex++;
+		bench++;
 		*i = *i++;
+		return (1);
 	}
 	if (complex > 1 || bench > 1)
 	{
@@ -158,6 +144,7 @@ static void skypflag(int *i, char *arg)
 		write(2, "Error\n", 6);
 		exit (0);
 	}
+	return (0);
 }
 
 // checks for dupes on the list
@@ -186,8 +173,8 @@ static void check_dupes(t_list **alst)
 	}
 }
 
-
-int    check_args(int argc, char **argv)
+// check that the arguments needed are well established
+void    check_args(int argc, char **argv)
 {
     int i;
     int pass;
@@ -200,7 +187,6 @@ int    check_args(int argc, char **argv)
 			|| !ft_strcmp(argv[i], "--complex")
             || !ft_strcmp(argv[i], "--mediu")
             || !ft_strcmp(argv[i], "--adaptive"))
-            || 
         else if (!ft_strcmp(argv[i], "--bench"))
             bench = -bench;
         i++;

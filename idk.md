@@ -1,5 +1,13 @@
 firs
 
+
+atoi done
+get the split and atoi
+and new and add 
+and makefile 
+
+
+
 we get parsed
 a complexity flag and an optional bench flag
 and a list of lumbers

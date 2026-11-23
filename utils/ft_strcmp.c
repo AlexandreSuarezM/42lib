@@ -6,13 +6,12 @@
 /*   By: asuarez <asuarez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/04 16:02:53 by asuarez           #+#    #+#             */
-/*   Updated: 2026/11/12 18:53:49 by asuarez          ###   ########.fr       */
+/*   Updated: 2026/11/23 11:51:48 by asuarez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-//return 0 if same 
 int	ft_strcmp(char *s1, char *s2)
 {
 	while (*s1 && *s2 && *s1 == *s2)

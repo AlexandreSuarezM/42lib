@@ -6,7 +6,7 @@
 /*   By: asuarez <asuarez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/10 17:20:27 by asuarez           #+#    #+#             */
-/*   Updated: 2026/11/23 16:04:08 by asuarez          ###   ########.fr       */
+/*   Updated: 2026/11/23 19:16:47 by asuarez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,12 @@ int	main(int argc, char **argv)
 	alst = NULL;
 	blst = NULL;
 
-	// create list 
-	// check dupes and rel vas 
-	// calculo del rel pos como vamos a loopear por cada elemento de la lista los anteriores add el poco eficiente check
-	// list size -1 name -flag -optional flag.
+	// check flag count
+	flagcount(&argv);
+	// creates a lsit 
+	init_list(argv, &alist);
 
-
-
+	check_dupes(&alist);
 
 	
 		Radix(&alst,&blst, argc - 2);
@@ -95,12 +94,11 @@ int	main(int argc, char **argv)
 
 
 // 
-static void	init_list(char **argv)
+static void	init_list(char **argv, t_list **alst)
 {
 	size_t	i;
 	char 	**args;
 	size_t	j;
-	static flag[5];   // the flags are ordered has simple medium complex adaptive bench
 	
 	i = 1;
 	while (argv[i])
@@ -114,7 +112,7 @@ static void	init_list(char **argv)
 			else
 			{
 				ft_lstmew(ft_atoi(args[j]));
-				ft_lstadd_top(alst); // direction o alst 
+				ft_lstadd_top(alst); // 
 				j++;
 			}
 		}
@@ -127,39 +125,56 @@ static void	init_list(char **argv)
 	}
 }
 
-// is args a flag
-// did we have flags 
-// are the flags okey
-// 
+// checks for known flags returns 1-1 for goo ones 
 static int skypflag(char *arg)
 {
-	if (ft_strcmp(arg, "--complex") || ft_strcmp(arg, "--medium"))
-	{
-		flag[2]++;
+	int	i;
+
+	if (ft_strcmp(arg, "--complex"))
 		return (1);
-	}
-	if (ft_strcmp(arg, "--simple") || ft_strcmp(arg, "--adaptive"))
-	{
-		flag[0]++;
+	if (ft_strcmp(arg, "--simple"))
 		return (1);
-	}
 	if (ft_strcmp(arg, "--bench"))
-	{
-		flag[4]++;
+		return (-1);
+	if (ft_strcmp(arg, "--adaptive"))
 		return (1);
-	}
-	if (flag[0] + flag[1] + flag[2] + flag[3] > 1 || flag[5] > 1)
-	{
-		ft_lstclear(); // free de los que tenga 
-		write(2, "Error\n", 6);
-		exit (0);
-	}
+	if(ft_strcmp(arg, "--medium"))
+		return (1);
 	return (0);
+}
+
+
+// takes argv
+// counts total flags 
+//  exits if too many 
+// program can run with no flags 
+static	void	flagcount(char **argv)
+{
+	int flag;
+	int flag2;
+
+	fllag = 0;
+	flag2 = 0;
+	while (argv[i])
+	{
+		if(skypflag(argv[i]) == 1)
+			flag++;
+		if(skypflag(argv[i]) == -1)
+			flag2++;
+	}
+	if (flag > 1 || flag2 > 1)
+		exit (1);
+	//gives prompt back
+	while (**argv)
+	{
+		argv++;
+		ft_printf("%s' '",*argv);
+	}
 }
 
 // checks for dupes on the list
 // to iterate the list 
-// aqui ay tengo el alist creado
+// alist rel poss count 
 static void check_dupes(t_list **alst)
 {
 	t_list	aux;
@@ -184,21 +199,21 @@ static void check_dupes(t_list **alst)
 }
 
 // check that the arguments needed are well established
-void    check_args(int argc, char **argv)
-{
-    int i;
-    int pass;
-
-    i = 1;
-	pass = 0;
-    while (i < argc)
-    {
-        if (!ft_strcmp(argv[i], "--simple")
-			|| !ft_strcmp(argv[i], "--complex")
-            || !ft_strcmp(argv[i], "--mediu")
-            || !ft_strcmp(argv[i], "--adaptive"))
-        else if (!ft_strcmp(argv[i], "--bench"))
-            bench = -bench;
-        i++;
-    }
-}
+//void    check_args(int argc, char **argv)
+//{
+//    int i;
+//    int pass;
+//
+//    i = 1;
+//	pass = 0;
+//    while (i < argc)
+//    {
+//        if (!ft_strcmp(argv[i], "--simple")
+//			|| !ft_strcmp(argv[i], "--complex")
+//            || !ft_strcmp(argv[i], "--mediu")
+//            || !ft_strcmp(argv[i], "--adaptive"))
+//        else if (!ft_strcmp(argv[i], "--bench"))
+//            bench = -bench;
+//        i++;
+//    }
+//}

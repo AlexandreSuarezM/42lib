@@ -6,10 +6,11 @@
 /*   By: asuarez <asuarez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/07 17:26:07 by asuarez           #+#    #+#             */
-/*   Updated: 2026/11/20 12:37:11 by asuarez          ###   ########.fr       */
+/*   Updated: 2026/11/23 11:16:31 by asuarez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+// returns  1 if no digit
 int	ft_isdigit(char a)
 {
 	if ('0' <= a && a <= '9')

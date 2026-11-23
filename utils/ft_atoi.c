@@ -6,13 +6,18 @@
 /*   By: asuarez <asuarez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/10 20:36:57 by asuarez           #+#    #+#             */
-/*   Updated: 2026/11/20 13:18:01 by asuarez          ###   ########.fr       */
+/*   Updated: 2026/11/23 11:51:25 by asuarez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "pushswap.h"
 
-
+// we get numbers via split 
+// so all space separators get cleared
+// call atoi clear the separators
+// get the sign
+// check  num for overflow
+// check if the string past sign exists and was a number/z
 
 // unsigned has defined behaviour on overflows unlike int
 // check with int max and intt max + 1 for + and -1
@@ -21,20 +26,14 @@
 static void data_overflow(unsigned int rt, char nptr, int sign, t_list **lst)
 {
 	unsigned int	num;
+	unsigned int	max;
 
+	max = (((unsigned int)(-1) / 2) );
 	num = (unsigned int)rt * 10 + (unsigned int)(nptr - '0');
 	if (sign == -1)
+		max += 1;
 	{
-		if(num > (((unsigned int)(-1) / 2) + 1))
-		{
-			write (2, "Error\n", 6);
-			ft_lstclear(lst);
-			exit (1);
-		}
-	}
-	else
-	{
-		if(num > (((unsigned int)(-1) / 2)))
+		if(num > max)
 		{
 			write (2, "Error\n", 6);
 			ft_lstclear(lst);
@@ -44,25 +43,34 @@ static void data_overflow(unsigned int rt, char nptr, int sign, t_list **lst)
 }
 
 // atoi returns int always this cuts the proces if the number misses or 
-static	int	data_nonum(int r, char lastdigit, char eon t_list **lst)
+// this checks if rt was zero was it b ecause 0 was parsed
+// when the number ends is it a pure number 123\0 or 123
+// for r = 0 nbr -i not good
+// because atoi comes after split we can just check that it gets the n
+//so now 
+
+static	void	data_nonum(char *content, t_list **lst)
 {	
-	if (r == 0 && lastdigit != 0)
+	if(!content || *content == '\0')
 	{
 		write (2, "Error\n", 6);
 		ft_lstclear(lst);
 		exit(1);
 	}
-	if (isnum(lastdigit) || eon != '\0')
+	while  (*content)
 	{
-		write (2, "Error\n", 6);
-		ft_lstclear(lst);
-		exit(1);
+		if (ft_isdigit(*content))
+		{
+			write (2, "Error\n", 6);
+			ft_lstclear(lst);
+			exit(1);
+		}
+		content++;
 	}
-	return (0);
 }
 
 // aoti modified to take non numbers
-int	ft_atoi(const char *nptr,t_list **lst)
+int	ft_atoi(const char *nptr, t_list **lst)
 {
 	int				i;
 	unsigned int	rt;
@@ -75,18 +83,18 @@ int	ft_atoi(const char *nptr,t_list **lst)
 		i++;
 	if (nptr[i] == '-' || nptr[i] == '+')
 	{
-		if (nptr[i] == '-')
+		if (nptr[i] == '+')
 			sign = -1;
 		i++;
 	}
+	data_nonum(nptr + i, lst);
 	while (nptr[i] >= '0' && nptr[i] <= '9')
 	{
 		data_overflow(rt, nptr[i], sign, lst);
-		rt = rt * 10 + (int)(nptr[i] - '0');
+		rt = rt * 10 - (int)(nptr[i] - '0');
 		i++;
 	}
-	data_nonum(rt, nptr[i - 1], nptr[i], lst);
-	return (rt * sign);
+	return (((int)rt) * sign);
 }
 
 //

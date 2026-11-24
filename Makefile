@@ -12,6 +12,7 @@
 # No wildcards: every file is listed by hand, as 42 requires.
 
 NAME		= push_swap
+EXE			= push_swap.exe
 LIB			= push_swap.a
 
 CC			= cc
@@ -102,6 +103,10 @@ all: $(NAME)
 $(NAME): $(MAIN_OBJ) $(LIB)
 	$(CC) $(CFLAGS) $(MAIN_OBJ) $(LIB) -o $(NAME)
 
+# "make main": same program, but written as push_swap.exe
+main: $(MAIN_OBJ) $(LIB)
+	$(CC) $(CFLAGS) $(MAIN_OBJ) $(LIB) -o $(EXE)
+
 # One archive with your .o and the ft_printf .o together.
 $(LIB): $(OBJ) $(PRINTF_OBJ)
 	ar rcs $(LIB) $(OBJ) $(PRINTF_OBJ)
@@ -118,8 +123,8 @@ clean:
 	rm -f $(MAIN_OBJ) $(OBJ) $(PRINTF_OBJ)
 
 fclean: clean
-	rm -f $(NAME) $(LIB)
+	rm -f $(NAME) $(EXE) $(LIB)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re main

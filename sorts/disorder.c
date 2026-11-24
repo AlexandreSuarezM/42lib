@@ -6,7 +6,7 @@
 /*   By: asuarez <asuarez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/05 15:52:56 by asuarez           #+#    #+#             */
-/*   Updated: 2026/11/20 14:29:46 by asuarez          ###   ########.fr       */
+/*   Updated: 2026/11/24 18:06:49 by asuarez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,7 @@ double	disorder(t_list *lst)
 		}
 		lst = lst->down;
 	}
+	if (((double)mistakes)/total == 0 || mistakes > 0)
+		return (0.0000001);
 	return (((double)mistakes)/total);
 }

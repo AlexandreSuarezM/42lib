@@ -6,7 +6,7 @@
 /*   By: asuarez <asuarez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/09 15:59:34 by asuarez           #+#    #+#             */
-/*   Updated: 2026/11/19 21:25:13 by asuarez          ###   ########.fr       */
+/*   Updated: 2026/11/24 21:07:21 by asuarez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,14 +59,14 @@ void	selectionsort(t_list **a, t_list **b, int size)
 	int		count;
 write(1,"Selec\n",6);
 
-	if (disorder(t_list *a))
+	if (disorder(*a))
 		return;
 	count = 0;
 	while ((*a)->down->down->down)
 	{
 		if(searchmax(*a, size - count) == 0)
 			push(a, b);
-		if(searchmax(*a, size - count) < 0)
+		else if(searchmax(*a, size - count) < 0)
 		{
 			while ((*a)->rel_pos != (size - count))
 				rotateup(a);
@@ -85,3 +85,52 @@ write(1,"Selec\n",6);
 		push(b,a);
 }
 
+void	sort2(t_list ** a)
+{
+	if ((*a)->down->down == NULL)
+	{
+  	 if ((*a)->rel_pos > (*a)->down->rel_pos)
+  	     swap(a);
+  	 return;
+	}
+//
+//
+//oid selectionsort(t_list **a, t_list **b, int size)
+//
+//   int count;
+//   int pos;
+//
+//   if (!*a || !(*a)->down)
+//       return;
+//   if (disorder(*a) == 0)
+//       return;
+//   if ((*a)->down->down == *a)
+//   {
+//       if ((*a)->rel_pos > (*a)->down->rel_pos)
+//           swap(a);
+//       return;
+//   }
+//   count = 0;
+//   while ((*a)->down->down->down != *a)
+//   {
+//       pos = searchmax(*a, size - count);
+//       if (pos == 0)
+//           push(a, b);
+//       else if (pos < 0)
+//       {
+//           while ((*a)->rel_pos != size - count)
+//               rotateup(a);
+//           push(a, b);
+//       }
+//       else
+//       {
+//           while ((*a)->rel_pos != size - count)
+//               rotatedown(a);
+//           push(a, b);
+//       }
+//       count++;
+//   }
+//   sort3(a);
+//   while (*b)
+//       push(b, a);
+//

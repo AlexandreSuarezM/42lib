@@ -18,9 +18,12 @@
 void	ft_lstclear(t_list **lst, char **args)
 {
 	t_list	*aux;
+	int	i;
 
-	if (lst)
+	i = 0;
+	if (lst && *lst)
 	{
+		(*lst)->up->down = NULL;
 		while (*lst)
 		{
 			(*lst)->content = 0;
@@ -30,9 +33,11 @@ void	ft_lstclear(t_list **lst, char **args)
 		}
 		*lst = NULL;
 	}
+	if (!args)
+		return ;
 	while (args[i])
 	{
-		free(args);
+		free(args[i]);
 		i++;
 	}
 	free(args);

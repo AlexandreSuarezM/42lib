@@ -41,107 +41,77 @@
 //}
 // take the input
 // 
-int	main(int argc, char **argv)
-{
-	int	list_size;
-	t_list	*new;
-	t_list	*alst;
-	t_list	*aux;
-	t_list	*blst;
-
-	if(argc < 2)
-		write(2, "Error\n", 6);
-	if(argc < 2)
-		return (1);
-	list_size = 2; 
-	alst = NULL;
-	blst = NULL;
-
-	// check flag count
-	flagcount(&argv);
-	// creates a lsit 
-	init_list(argv, &alist);
-
-	check_dupes(&alist);
-
-	
-		Radix(&alst,&blst, argc - 2);
-	//if (ft_strcmp(argv[1],"--simple") == 0)
-	//write(1, "Selec\n", 6 );
-	//	selectionsort(&alst, &blst, argc - 2);
-	//if (argv[1] == "medium")
-	//Chunk-based sorting — O(n√n).
-	
-	//if (argv[1] == "adaptive")
-	// adaptive
-	//if (argv[1] == "checkers")
-	//else
-	//	return (0);
-
-	//showlist(alst);
-	printf("%d\n",dis)
-	
-	ft_lstclear(&alst);
-	return (0);
-}
 
 // if no parameters the prompt must be returned as it comes 
 
 //  funcion qu eme tome los argumentos
 //  --bench  "1  3   6 " 12     "" 
 
+// checks for known flags returns 1-1 for goo ones 
+static int skypflag(char *arg)
+{
+	if (ft_strcmp(arg, "--complex") == 0)
+		return (1);
+	if (ft_strcmp(arg, "--simple") == 0)
+		return (1);
+	if (ft_strcmp(arg, "--bench") == 0)
+		return (-1);
+	if (ft_strcmp(arg, "--adaptive") == 0)
+		return (1);
+	if(ft_strcmp(arg, "--medium") == 0)
+		return (1);
+	return (0);
+}
 
 
+// frees every word from ft_split and then the array itself
+static void	free_split(char **args)
+{
+	size_t	i;
 
-// 
-static void	init_list(char **argv, t_list **alst)
+	if (!args)
+		return ;
+	i = 0;
+	while (args[i])
+	{
+		free(args[i]);
+		i++;
+	}
+	free(args);
+}
+
+//
+static void	init_list(char **argv, t_list **alst, int *size)
 {
 	size_t	i;
 	char 	**args;
 	size_t	j;
-	
+	t_list	*node;
+
 	i = 1;
 	while (argv[i])
 	{
-		args = ft_split(argv[i]);
+		args = ft_split(argv[i], ' ');
 		j = 0;
-		while (args[j])
+		while (args && args[j])
 		{
 			if(skypflag(args[j]))
 				j++;
 			else
 			{
-				ft_lstmew(ft_atoi(args[j]));
-				ft_lstadd_top(alst); // 
+				node = ft_lstnew(ft_atoi(args[j], alst, args));
+				ft_lstadd_top(alst, node);
 				j++;
+				(*size)++;
 			}
 		}
+		free_split(args);
 		i++;
 	}
-	if(complex == 0)  // if no arguments return the same promp wich is char * separted by space.
-	{
-		while(argv[i])
-			ft_printf("%s' '",argv[i]);
-	}
+
 }
 
-// checks for known flags returns 1-1 for goo ones 
-static int skypflag(char *arg)
-{
-	int	i;
 
-	if (ft_strcmp(arg, "--complex"))
-		return (1);
-	if (ft_strcmp(arg, "--simple"))
-		return (1);
-	if (ft_strcmp(arg, "--bench"))
-		return (-1);
-	if (ft_strcmp(arg, "--adaptive"))
-		return (1);
-	if(ft_strcmp(arg, "--medium"))
-		return (1);
-	return (0);
-}
 
 
 // takes argv
@@ -152,8 +122,10 @@ static	void	flagcount(char **argv)
 {
 	int flag;
 	int flag2;
+	int	i;
 
-	fllag = 0;
+	i = 0;
+	flag = 0;
 	flag2 = 0;
 	while (argv[i])
 	{
@@ -161,40 +133,47 @@ static	void	flagcount(char **argv)
 			flag++;
 		if(skypflag(argv[i]) == -1)
 			flag2++;
+		i++;
 	}
 	if (flag > 1 || flag2 > 1)
 		exit (1);
-	//gives prompt back
-	while (**argv)
-	{
-		argv++;
-		ft_printf("%s' '",*argv);
-	}
 }
 
 // checks for dupes on the list
 // to iterate the list 
 // alist rel poss count 
-static void check_dupes(t_list **alst)
+// outer loop: visit each of the size nodes once (aux)
+// inner loop: compare aux with the other size - 1 nodes (aux2)
+static void check_dupes(t_list **alst, int size)
 {
-	t_list	aux;
-	t_list	aux2;
+	t_list	*aux;
+	t_list	*aux2;
+	int		i;
+	int		j;
 
-	aux = alst;
-	while (aux->down != alst)
+	if(!*alst)
+		exit(0);
+	aux = *alst;
+	i = 0;
+	while (i < size)
 	{
 		aux2 = aux->down;
-		while (aux2 != aux)
+		j = 0;
+		while (j < size - 1)
 		{
 			if (aux->content == aux2->content)
 				{
-					// free & exit & write;
+					write(2, "Error\n", 6);
+					ft_lstclear(alst, NULL);
+					exit(1);
 				}
 			if (aux->content > aux2->content)
-				(*aux)->rel_pos++;
+				aux->rel_pos++;
 			aux2 = aux2->down;
+			j++;
 		}
 		aux = aux->down;
+		i++;
 	}
 }
 
@@ -217,3 +196,46 @@ static void check_dupes(t_list **alst)
 //        i++;
 //    }
 //}
+
+// no numbers to sort no error give back
+
+int	main(int argc, char **argv)
+{
+	int	list_size;
+	t_list	*alst;
+	t_list	*blst; // blist summon and clear on each algo maybe
+
+	if(argc < 2)
+		return (1);
+	list_size = 0; 
+	alst = NULL;
+	blst = NULL;
+
+	// check flag count
+	flagcount(argv);
+	// creates a lsit 
+	init_list(argv, &alst, &list_size);
+	if(!alst)
+		exit(1);
+	check_dupes(&alst, list_size);
+
+	
+	Radix(&alst,&blst, list_size);
+	//if (ft_strcmp(argv[1],"--simple") == 0)
+	//write(1, "Selec\n", 6 );
+	//	selectionsort(&alst, &blst, argc - 2);
+	//if (argv[1] == "medium")
+	//Chunk-based sorting — O(n√n).
+	
+	//if (argv[1] == "adaptive")
+	// adaptive
+	//if (argv[1] == "checkers")
+	//else
+	//	return (0);
+
+	//showlist(alst);
+
+	
+	ft_lstclear(&alst, NULL);
+	return (0);
+}

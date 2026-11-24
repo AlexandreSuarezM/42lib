@@ -26,36 +26,35 @@ typedef struct s_list
 	struct s_list	*down;
 }	t_list;
 
-char	**ft_split(char const *s, char c);
-int		ft_atoi(const char *nptr, t_list **lst);
-t_list	*popfirst(t_list **lst);
+/* utils/ */
+int				ft_atoi(const char *nptr, t_list **lst, char **args);
+int				ft_isdigit(char a);
+void			ft_lstadd_top(t_list **lst, t_list *new);
+void			ft_lstclear(t_list **lst, char **args);
+t_list			*popfirst(t_list **lst);
+t_list			*ft_lstnew(int num);
 unsigned int	ft_lstsize(t_list *lst);
-void	showlist(t_list *a);
-size_t	ft_strlen(const char *s);
-t_list	*ft_lstnew(int num);
-void	ft_lstclear(t_list **lst);
-void	ft_lstadd_top(t_list **lst, t_list *new);
-double	disorder(t_list *lst);
-void	push(t_list **, t_list **);
-void	rotatedown(t_list **lst);
-void	rotateup(t_list **lst);
-void	swap(t_list **lst);
-void	selectionsort(t_list **a, t_list **b, int size);
-double	disorder(t_list *lst);
-int		compare(char *a, char *b);
-int		ft_strcmp(char *s1, char *s2);
-void	Radix(t_list **a, t_list **b, int size);
+char			**ft_split(char const *s, char c);
+int				ft_strcmp(char *s1, char *s2);
 
-int	ft_printf(const char *str, ...);
-int	ft_putstr(const char *str);
-int	ft_hextoa(unsigned int num);
-int	ft_hextoa_upper(unsigned int num);
-int	ft_pointtoa(unsigned long long num);
-int	ft_conv(char c, va_list args);
-int	ft_printf(const char *str, ...);
-int	ft_putcharc(char c);
-int	ft_putnbr_signed(int n, int count);
-int	ft_putnbr_unsigned(unsigned int n, int count);
-int	ft_putstr(const char *str);
+/* Operations/ */
+double			disorder(t_list *lst);
+void			push(t_list **from, t_list **to);
+void			rotatedown(t_list **lst);
+void			rotateup(t_list **lst);
+void			swap(t_list **lst);
+
+/* sorts/ */
+void			chunking(void);
+void			Radix(t_list **a, t_list **b, int size);
+void			selectionsort(t_list **a, t_list **b, int size);
+
+/* root */
+void			showlist(t_list *a);
+
+/* no file in the repo yet (deprecated/ or your ft_printf lib) */
+size_t			ft_strlen(const char *s);
+char			*ft_substr(char const *s, unsigned int start, size_t len);
+int				ft_printf(const char *str, ...);
 
 #endif

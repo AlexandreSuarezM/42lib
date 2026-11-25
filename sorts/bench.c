@@ -6,7 +6,7 @@
 /*   By: asuarez <asuarez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/25 13:00:00 by asuarez           #+#    #+#             */
-/*   Updated: 2026/11/25 13:00:00 by asuarez          ###   ########.fr       */
+/*   Updated: 2026/11/25 21:33:45 by asuarez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ static void	put_nbr(long n)
 	write(2, &c, 1);
 }
 
-// disorder 0.4993 -> "49.93%"
 static void	put_disorder(double dis)
 {
 	long	n;
@@ -71,7 +70,7 @@ static void	put_strategy(char *flag, char *used)
 		put_str("O(n log n)\n");
 }
 
-// dis must be measured BEFORE sorting
+// after sorting
 void	bench(double dis, char *flag, char *used)
 {
 	int		op;

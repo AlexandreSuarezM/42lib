@@ -1,6 +1,6 @@
 #include "pushswap.h"
 
-// print for 1 listers and print the list using the fact that its ordered
+// just to check niely could call disorder
 void showlist(t_list *a)
 {
 	t_list	*aux;

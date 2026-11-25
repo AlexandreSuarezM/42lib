@@ -6,15 +6,13 @@
 /*   By: asuarez <asuarez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/25 13:00:00 by asuarez           #+#    #+#             */
-/*   Updated: 2026/11/25 13:00:00 by asuarez          ###   ########.fr       */
+/*   Updated: 2026/11/25 21:38:28 by asuarez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-// One counter per operation, indexed with OP_SA ... OP_RRR.
-// No globals allowed: the array lives as a static inside this function
-// and everyone gets to it through the returned pointer.
+// static variable so it keeps adding the value could also be a ** 
 int	*op_counter(void)
 {
 	static int	counts[OP_COUNT];
@@ -22,7 +20,7 @@ int	*op_counter(void)
 	return (counts);
 }
 
-// name of an operation, without the newline
+// list of the ops in names 
 char	*op_name(int op)
 {
 	static char	*names[OP_COUNT] = {"sa", "sb", "ss", "pa", "pb",
@@ -33,9 +31,7 @@ char	*op_name(int op)
 	return (names[op]);
 }
 
-// counts the operation and prints it on stdout.
-// OP_SILENT (-1) does nothing: used by ss/rr/rrr for their 2 inner moves
-// and later by the checker.
+// Prints the op but silent means not but the more i think we always prnt it check subject
 void	op_log(int op)
 {
 	char	*name;

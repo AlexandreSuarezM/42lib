@@ -27,7 +27,7 @@ double	disorder(t_list *lst)
 	while(lst->down != aux)
 	{
 		aux2 = lst->down;
-		while (aux2 != lst)
+		while (aux2 != aux)
 		{
 			total++;
 			if(aux2->rel_pos > lst->rel_pos)
@@ -36,7 +36,7 @@ double	disorder(t_list *lst)
 		}
 		lst = lst->down;
 	}
-	if (((double)mistakes)/total == 0 || mistakes > 0)
+	if (((double)mistakes)/total == 0 && mistakes > 0)
 		return (0.0000001);
 	return (((double)mistakes)/total);
 }

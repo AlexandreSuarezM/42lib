@@ -10,14 +10,18 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+
 #include "pushswap.h"
-// Pushes the first element from to 
-void push(t_list **from, t_list **to)
+
+// moves the top of from to the top of to
+// op: OP_PA / OP_PB to print it, OP_SILENT to stay quiet
+void	push(t_list **from, t_list **to, int op)
 {
-    t_list *node;
-    node = popfirst(from);
-    if (!node)
-        return;
-    ft_lstadd_top(to, node);
-	
+	t_list	*node;
+
+	node = popfirst(from);
+	if (!node)
+		return ;
+	ft_lstadd_top(to, node);
+	op_log(op);
 }

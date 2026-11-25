@@ -10,10 +10,23 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+
 #include "pushswap.h"
-//because rotating is jsut readjusting the index of the list
-// last becomes first so we rotated down
-void	rotatedown(t_list **lst)
+
+// rra / rrb: the bottom comes to the top
+// circular list, so it is just moving the top pointer one up
+void	rotatedown(t_list **lst, int op)
 {
+	if (!lst || !*lst)
+		return ;
 	*lst = (*lst)->up;
+	op_log(op);
+}
+
+// rrr: rra and rrb at the same time, counts as ONE operation
+void	rrr(t_list **a, t_list **b)
+{
+	rotatedown(a, OP_SILENT);
+	rotatedown(b, OP_SILENT);
+	op_log(OP_RRR);
 }

@@ -20,26 +20,36 @@
 // why do we need to parse ** lst instead of *lst for structures in void to keep the data modified ? isnt it suficient for a linked list to modify the content ? oh because *lst is alreadu the position were the eleemnt of the list resides 
 // so we want to update the posiion of the first element of the lsit ?
 // i might have made it confusing for 0 reson...
-void	swap(t_list **lst)
+// circular list: bottom <-> A <-> B <-> C ... -> bottom
+// after swap:    bottom <-> B <-> A <-> C ... -> bottom
+// with 2 nodes the circle is A <-> B, so swapping = moving the top pointer
+// op: OP_SA / OP_SB to print it, OP_SILENT to stay quiet
+void	swap(t_list **lst, int op)
 {
-	t_list	*aux;
+	t_list	*a;
+	t_list	*b;
 
-	if (!lst || !(*lst) || !(*lst)->down)
+	if (!lst || !*lst || (*lst)->down == *lst)
 		return ;
-	// save queue node
-	aux = (*lst)->up; 
-	// top node up now points to the switched node     
-	(*lst)->up = (*lst)->down;
-	// bottom part of the node now points to what the bottom node points down
-	// first node points well
-	(*lst)->down = (*lst)->down->down;
-	// new top of the stack is b wich was accesed via top up
-	*lst = (*lst)->up;
-	// update queue node now up to b  
-	aux->up = *lst;
-	// b down now poits to a    rpevious b up
-	(*lst)->down = (*lst)->up;
-	// b up is queue
-	(*lst)->up = aux;	
+	a = *lst;
+	b = a->down;
+	*lst = b;
+	op_log(op);
+	if (b->down == a)
+		return ;
+	a->up->down = b;
+	b->down->up = a;
+	a->down = b->down;
+	b->up = a->up;
+	a->up = b;
+	b->down = a;
+}
+
+// ss: sa and sb at the same time, counts as ONE operation
+void	ss(t_list **a, t_list **b)
+{
+	swap(a, OP_SILENT);
+	swap(b, OP_SILENT);
+	op_log(OP_SS);
 }
 

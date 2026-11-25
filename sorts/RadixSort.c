@@ -55,13 +55,13 @@ void Radix(t_list **a, t_list **b, int size)
         while (stack_len > 0)
         {
             if (binary((*a)->rel_pos, byte))
-                 push(a, b);
+                 push(a, b, OP_PB);
             else
-        		rotateup(a);
+        		rotateup(a, OP_RA);
             stack_len--;
         }
         while (*b)
-            push(b, a);
+            push(b, a, OP_PA);
         byte++;
     }
 }

@@ -13,6 +13,7 @@
 
 NAME		= push_swap
 EXE			= push_swap.exe
+CHECKER		= checker
 LIB			= push_swap.a
 
 CC			= cc
@@ -26,6 +27,7 @@ HEADER		= pushswap.h
 # ---------------------------------------------------------------------------- #
 
 MAIN_SRC	= push_swap.c
+CHECKER_SRC	= checkers.c
 
 UTILS_SRC	= utils/ft_atoi.c \
 			  utils/ft_isdigit.c \
@@ -37,7 +39,9 @@ UTILS_SRC	= utils/ft_atoi.c \
 			  utils/ft_split.c \
 			  utils/ft_strcmp.c \
 			  utils/ft_strlen.c \
-			  utils/ft_substr.c 
+			  utils/ft_substr.c \
+			  utils/parse.c \
+			  utils/get_next_line.c
 
 #			  utils/ft_strlen.c    <- PLACEHOLDER: used by sorts/RadixSort.c,
 #			                          only exists in deprecated/ right now
@@ -47,16 +51,20 @@ UTILS_SRC	= utils/ft_atoi.c \
 OPS_SRC		= Operations/push.c \
 			  Operations/rotate.c \
 			  Operations/rotateup.c \
-			  Operations/sabs.c
+			  Operations/sabs.c \
+			  Operations/op_log.c
 
 SORTS_SRC	= sorts/disorder.c \
 			  sorts/RadixSort.c \
-			  sorts/selectionsort.c
-#			  sorts/chunking.c     <- PLACEHOLDER: add back when it compiles
+			  sorts/selectionsort.c \
+			  sorts/chunking.c \
+			  sorts/adaptive.c
+
+BENCH_SRC	= bench.c
 
 DEBUG_SRC	= showlist.c
 
-SRC			= $(UTILS_SRC) $(OPS_SRC) $(SORTS_SRC) $(DEBUG_SRC)
+SRC			= $(UTILS_SRC) $(OPS_SRC) $(SORTS_SRC) $(BENCH_SRC) $(DEBUG_SRC)
 
 # ---------------------------------------------------------------------------- #
 #  ft_printf (PLACEHOLDER)                                                     #
@@ -93,6 +101,7 @@ PRINTF_SRC		=
 # ---------------------------------------------------------------------------- #
 
 MAIN_OBJ	= $(MAIN_SRC:.c=.o)
+CHECKER_OBJ	= $(CHECKER_SRC:.c=.o)
 OBJ			= $(SRC:.c=.o)
 PRINTF_OBJ	= $(PRINTF_SRC:.c=.o)
 
@@ -107,6 +116,12 @@ $(NAME): $(MAIN_OBJ) $(LIB)
 	$(CC) $(CFLAGS) $(MAIN_OBJ) $(LIB) -o $(NAME)
 
 # "make main": same program, but written as push_swap.exe
+# checker: reads operations from stdin and prints OK / KO
+$(CHECKER): $(CHECKER_OBJ) $(LIB)
+	$(CC) $(CFLAGS) $(CHECKER_OBJ) $(LIB) -o $(CHECKER)
+
+bonus: $(CHECKER)
+
 main: $(MAIN_OBJ) $(LIB)
 	$(CC) $(CFLAGS) $(MAIN_OBJ) $(LIB) -o $(EXE)
 
@@ -123,11 +138,11 @@ $(PRINTF_DIR)/%.o: $(PRINTF_DIR)/%.c $(PRINTF_HEADER)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 clean:
-	rm -f $(MAIN_OBJ) $(OBJ) $(PRINTF_OBJ)
+	rm -f $(MAIN_OBJ) $(CHECKER_OBJ) $(OBJ) $(PRINTF_OBJ)
 
 fclean: clean
-	rm -f $(NAME) $(EXE) $(LIB)
+	rm -f $(NAME) $(EXE) $(CHECKER) $(LIB)
 
 re: fclean all
 
-.PHONY: all clean fclean re main
+.PHONY: all clean fclean re main bonus

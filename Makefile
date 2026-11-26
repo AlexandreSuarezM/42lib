@@ -1,16 +1,3 @@
-# **************************************************************************** #
-#                                  push_swap                                   #
-# **************************************************************************** #
-#
-# How the build works:
-#   1. Every .c below (except push_swap.c, which has main) is compiled to .o.
-#   2. Those .o AND the ft_printf .o files are put into ONE archive:
-#      push_swap.a. That way you never need a separate ft_printf.a.
-#   3. push_swap.c is compiled and linked with push_swap.a to make the
-#      program "push_swap" (the subject requires that executable name).
-#
-# No wildcards: every file is listed by hand, as 42 requires.
-
 NAME		= push_swap
 EXE			= push_swap.exe
 CHECKER		= checker
@@ -18,83 +5,57 @@ LIB			= push_swap.a
 
 CC			= cc
 CFLAGS		= -Wall -Wextra -Werror
-INCLUDES	= -I. -I$(PRINTF_DIR)
+INCLUDES	= -I.
 
 HEADER		= pushswap.h
 
 # ---------------------------------------------------------------------------- #
-#  Program sources                                                             #
+#  Program sources (all at the root of the repository)                         #
 # ---------------------------------------------------------------------------- #
 
 MAIN_SRC	= push_swap.c
 CHECKER_SRC	= checkers.c
 
-UTILS_SRC	= utils/ft_atoi.c \
-			  utils/ft_isdigit.c \
-			  utils/ft_lstadd_top.c \
-			  utils/ft_lstclear.c \
-			  utils/ft_lstdelone.c \
-			  utils/ft_lstnew.c \
-			  utils/ft_lstsize.c \
-			  utils/ft_split.c \
-			  utils/ft_strcmp.c \
-			  utils/ft_strlen.c \
-			  utils/ft_substr.c \
-			  utils/parse.c \
-			  utils/get_next_line.c
+UTILS_SRC	= ft_atoi.c \
+			  ft_isdigit.c \
+			  ft_lstadd_top.c \
+			  ft_lstclear.c \
+			  ft_lstdelone.c \
+			  ft_lstnew.c \
+			  ft_lstsize.c \
+			  ft_split.c \
+			  ft_strcmp.c \
+			  ft_strlen.c \
+			  ft_substr.c \
+			  parse.c
 
-#			  utils/ft_strlen.c    <- PLACEHOLDER: used by sorts/RadixSort.c,
-#			                          only exists in deprecated/ right now
-#			  utils/ft_substr.c    <- PLACEHOLDER: used by utils/ft_split.c,
-#			                          does not exist yet
+OPS_SRC		= push.c \
+			  rotate.c \
+			  rotateup.c \
+			  sabs.c \
+			  op_log.c
 
-OPS_SRC		= Operations/push.c \
-			  Operations/rotate.c \
-			  Operations/rotateup.c \
-			  Operations/sabs.c \
-			  Operations/op_log.c
+SORTS_SRC	= disorder.c \
+			  RadixSort.c \
+			  selectionsort.c \
+			  chunking.c \
+			  adaptive.c \
+			  bench.c
 
-SORTS_SRC	= sorts/disorder.c \
-			  sorts/RadixSort.c \
-			  sorts/selectionsort.c \
-			  sorts/chunking.c \
-			  sorts/adaptive.c
-
-BENCH_SRC	= bench.c
-
-DEBUG_SRC	= showlist.c
-
-SRC			= $(UTILS_SRC) $(OPS_SRC) $(SORTS_SRC) $(BENCH_SRC) $(DEBUG_SRC)
+SRC			= $(UTILS_SRC) $(OPS_SRC) $(SORTS_SRC)
 
 # ---------------------------------------------------------------------------- #
-#  ft_printf (PLACEHOLDER)                                                     #
+#  get_next_line (only the checker uses it)                                    #
 # ---------------------------------------------------------------------------- #
 #
-# Copy your ft_printf folder into this repo (e.g. ./ft_printf/) and list its
-# .c files below. They are compiled with the same rule as everything else and
-# their .o go straight into push_swap.a, so there is no ft_printf.a.
-#
-# - PRINTF_DIR: folder with the ft_printf .c files and its header
-#   (e.g. ft_printf.h). It is added to INCLUDES with -I so pushswap.h can do
-#   #include "ft_printf.h".
-# - If ft_printf.h uses va_list, it must #include <stdarg.h> itself.
-# - Each ft_printf .o depends on its own .c and on the ft_printf header,
-#   see the $(PRINTF_DIR)/%.o rule below.
+# Only the mandatory files: the _bonus files define get_next_line too.
+# BUFFER_SIZE can be changed: make checker BUFFER_SIZE=1
 
-PRINTF_DIR		= ft_printf
-PRINTF_HEADER	= $(PRINTF_DIR)/ft_printf.h
+GNL_HEADER	= get_next_line.h
+BUFFER_SIZE	?= 42
 
-PRINTF_SRC		=
-#PRINTF_SRC		= $(PRINTF_DIR)/ft_printf.c \
-#				  $(PRINTF_DIR)/ft_conv.c \
-#				  $(PRINTF_DIR)/ft_putcharc.c \
-#				  $(PRINTF_DIR)/ft_putstr.c \
-#				  $(PRINTF_DIR)/ft_putnbr_signed.c \
-#				  $(PRINTF_DIR)/ft_putnbr_unsigned.c \
-#				  $(PRINTF_DIR)/ft_hextoa.c \
-#				  $(PRINTF_DIR)/ft_hextoa_upper.c \
-#				  $(PRINTF_DIR)/ft_pointtoa.c
-#				  ^ replace these with the real file names from your ft_printf
+GNL_SRC		= get_next_line.c \
+			  get_next_line_utils.c
 
 # ---------------------------------------------------------------------------- #
 #  Objects                                                                     #
@@ -103,7 +64,7 @@ PRINTF_SRC		=
 MAIN_OBJ	= $(MAIN_SRC:.c=.o)
 CHECKER_OBJ	= $(CHECKER_SRC:.c=.o)
 OBJ			= $(SRC:.c=.o)
-PRINTF_OBJ	= $(PRINTF_SRC:.c=.o)
+GNL_OBJ		= $(GNL_SRC:.c=.o)
 
 # ---------------------------------------------------------------------------- #
 #  Rules                                                                       #
@@ -111,34 +72,39 @@ PRINTF_OBJ	= $(PRINTF_SRC:.c=.o)
 
 all: $(NAME)
 
-# Final program: main + the archive.
+# push_swap = push_swap.o + the archive
 $(NAME): $(MAIN_OBJ) $(LIB)
 	$(CC) $(CFLAGS) $(MAIN_OBJ) $(LIB) -o $(NAME)
 
-# "make main": same program, but written as push_swap.exe
 # checker: reads operations from stdin and prints OK / KO
-$(CHECKER): $(CHECKER_OBJ) $(LIB)
-	$(CC) $(CFLAGS) $(CHECKER_OBJ) $(LIB) -o $(CHECKER)
+# = checkers.o + the GNL objects + the same archive as push_swap
+$(CHECKER): $(CHECKER_OBJ) $(GNL_OBJ) $(LIB)
+	$(CC) $(CFLAGS) $(CHECKER_OBJ) $(GNL_OBJ) $(LIB) -o $(CHECKER)
 
 bonus: $(CHECKER)
 
+# "make main": same program, but written as push_swap.exe
 main: $(MAIN_OBJ) $(LIB)
 	$(CC) $(CFLAGS) $(MAIN_OBJ) $(LIB) -o $(EXE)
 
-# One archive with your .o and the ft_printf .o together.
-$(LIB): $(OBJ) $(PRINTF_OBJ)
-	ar rcs $(LIB) $(OBJ) $(PRINTF_OBJ)
+# one archive with every .o shared by push_swap and checker
+$(LIB): $(OBJ)
+	ar rcs $(LIB) $(OBJ)
 
-# ft_printf objects: rebuilt when their .c or the ft_printf header changes.
-$(PRINTF_DIR)/%.o: $(PRINTF_DIR)/%.c $(PRINTF_HEADER)
+# GNL objects: rebuilt when their .c or get_next_line.h changes
+$(GNL_OBJ): %.o: %.c $(GNL_HEADER)
+	$(CC) $(CFLAGS) -D BUFFER_SIZE=$(BUFFER_SIZE) $(INCLUDES) -c $< -o $@
+
+# checkers.c includes both headers
+$(CHECKER_OBJ): $(CHECKER_SRC) $(HEADER) $(GNL_HEADER)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
-# Everything else: rebuilt when its .c or pushswap.h changes.
+# everything else: rebuilt when its .c or pushswap.h changes
 %.o: %.c $(HEADER)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 clean:
-	rm -f $(MAIN_OBJ) $(CHECKER_OBJ) $(OBJ) $(PRINTF_OBJ)
+	rm -f $(MAIN_OBJ) $(CHECKER_OBJ) $(OBJ) $(GNL_OBJ)
 
 fclean: clean
 	rm -f $(NAME) $(EXE) $(CHECKER) $(LIB)

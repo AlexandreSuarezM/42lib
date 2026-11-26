@@ -35,12 +35,12 @@
 typedef struct s_list
 {
 	int				content;
-	int				rel_pos;     
+	int				rel_pos;
 	struct s_list	*up;
 	struct s_list	*down;
 }	t_list;
 
-/* utils/ */
+/* ft_*.c utils */
 int				ft_atoi(const char *nptr, t_list **lst, char **args);
 int				ft_isdigit(char a);
 void			ft_lstadd_top(t_list **lst, t_list *new);
@@ -50,10 +50,15 @@ t_list			*ft_lstnew(int num);
 unsigned int	ft_lstsize(t_list *lst);
 char			**ft_split(char const *s, char c);
 int				ft_strcmp(char *s1, char *s2);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
-double			disorder(t_list *lst);
+size_t			ft_strlen(const char *s);
+char			*ft_substr(char const *s, unsigned int start, size_t len);
 
-/* Operations/ */
+/* parse.c (shared by push_swap and checker) */
+int				skypflag(char *arg);
+void			init_list(char **argv, t_list **alst, int *size);
+void			check_dupes(t_list **alst, int size);
+
+/* operations: push.c rotate.c rotateup.c sabs.c op_log.c */
 void			push(t_list **from, t_list **to, int op);
 void			rotatedown(t_list **lst, int op);
 void			rotateup(t_list **lst, int op);
@@ -65,30 +70,13 @@ int				*op_counter(void);
 char			*op_name(int op);
 void			op_log(int op);
 
-/* sorts/ */
+/* sorts: disorder.c chunking.c RadixSort.c selectionsort.c adaptive.c bench.c */
+double			disorder(t_list *lst);
 void			chunking(t_list **a, t_list **b, int size);
 void			Radix(t_list **a, t_list **b, int size);
 void			selectionsort(t_list **a, t_list **b, int size);
 char			*adaptive(t_list **a, t_list **b, int size);
 char			*sort_stack(t_list **a, t_list **b, int size, char *flag);
-
-/* utils/parse.c (shared by push_swap and checker) */
-int				skypflag(char *arg);
-void			init_list(char **argv, t_list **alst, int *size);
-void			check_dupes(t_list **alst, int size);
-
-/* utils/get_next_line.c */
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
-# endif
-
-char			*get_next_line(int fd);
-
-/* bench.c */
 void			bench(double dis, char *flag, char *used);
-void			showlist(t_list *a);
-size_t			ft_strlen(const char *s);
-char			*ft_substr(char const *s, unsigned int start, size_t len);
-int				ft_printf(const char *str, ...);
 
 #endif

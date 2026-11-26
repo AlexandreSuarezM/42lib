@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "pushswap.h"
+#include "get_next_line.h"
 
 // ./checker 3 2 1 < ops.txt          (or)   ./push_swap 3 2 1 | ./checker 3 2 1
 // builds stack a like push_swap, reads one operation per line with

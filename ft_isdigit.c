@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "pushswap.h"
+
 // returns  1 if no digit
 int	ft_isdigit(char a)
 {

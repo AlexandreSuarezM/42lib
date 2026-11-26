@@ -38,6 +38,23 @@ char	*adaptive(t_list **a, t_list **b, int size)
 	return ("--complex");
 }
 
+// previous version: small stacks and low disorder -> selection, else chunking
+// (no radix: chunking needs fewer ops than radix at every disorder level,
+//  500 random: chunking ~5200, radix ~6700; full marks limit 5500)
+//char	*adaptive(t_list **a, t_list **b, int size)
+//{
+//	double	dis;
+//
+//	dis = disorder(*a);
+//	if (size <= 5 || dis < 0.2)
+//	{
+//		selectionsort(a, b, size);
+//		return ("--simple");
+//	}
+//	chunking(a, b, size);
+//	return ("--medium");
+//}
+
 // runs the sort of the flag (flag comes from get_flag in push_swap.c)
 // returns the flag of the sort actually used (adaptive: the one it picked)
 char	*sort_stack(t_list **a, t_list **b, int size, char *flag)

@@ -179,6 +179,12 @@ For printing the operations operations use the print flag .
 
 
 -- check the errros and the frees
+    that is 
+    over/underflow from atoi exit
+    no int exit
+no arguments exit and return prompt
+to many arguments error 
+
 
 -- check gnl  checkers
 

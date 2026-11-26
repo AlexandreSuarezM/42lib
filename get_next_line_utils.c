@@ -30,7 +30,7 @@ int	check(char *str)
 	return (1);
 }
 
-size_t	ft_strlen(char *str)
+size_t	gnl_strlen(char *str)
 {
 	size_t	len;
 
@@ -76,7 +76,7 @@ char	*ft_concat(char *stack, char *buffer, int buffer_len)
 	size_t	stack_len;
 
 	i = 0;
-	stack_len = ft_strlen(stack) + 1;
+	stack_len = gnl_strlen(stack) + 1;
 	newstack = ft_calloc(stack_len + buffer_len, sizeof(char), &stack);
 	if (newstack == NULL)
 		return (NULL);

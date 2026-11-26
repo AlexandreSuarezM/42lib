@@ -24,7 +24,7 @@
 
 char	*get_next_line(int fd);
 int		check(char *str);
-size_t	ft_strlen(char *str);
+size_t	gnl_strlen(char *str);
 char	*ft_calloc(size_t amount, size_t tipe, char **stack);
 char	*ft_concat(char *stack, char*buffer, int buffer_len);
 char	*stackproces(char *stack);

@@ -48,7 +48,9 @@ static void	free_split(char **args)
 	free(args);
 }
 
-//
+// every number is added at the BOTTOM of a (add on top, then move the top
+// one down: in a looped list the node above the top is the bottom),
+// so the first argument stays on top, as the subject asks
 void	init_list(char **argv, t_list **alst, int *size)
 {
 	size_t	i;
@@ -69,6 +71,7 @@ void	init_list(char **argv, t_list **alst, int *size)
 			{
 				node = ft_lstnew(ft_atoi(args[j], alst, args));
 				ft_lstadd_top(alst, node);
+				*alst = (*alst)->down;
 				j++;
 				(*size)++;
 			}
@@ -76,7 +79,6 @@ void	init_list(char **argv, t_list **alst, int *size)
 		free_split(args);
 		i++;
 	}
-
 }
 
 
@@ -85,6 +87,8 @@ void	init_list(char **argv, t_list **alst, int *size)
 // alist rel poss count 
 // outer loop: visit each of the size nodes once (aux)
 // inner loop: compare aux with the other size - 1 nodes (aux2)
+// rel_pos = how many numbers are BIGGER: smallest -> size-1, biggest -> 0.
+// The sorts put the highest rel_pos on top, so a ends smallest on top.
 void	check_dupes(t_list **alst, int size)
 {
 	t_list	*aux;
@@ -108,7 +112,7 @@ void	check_dupes(t_list **alst, int size)
 					ft_lstclear(alst, NULL);
 					exit(1);
 				}
-			if (aux->content > aux2->content)
+			if (aux->content < aux2->content)
 				aux->rel_pos++;
 			aux2 = aux2->down;
 			j++;

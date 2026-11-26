@@ -98,3 +98,81 @@ insetead of storing it and doint the whole llop to find it
 // now add 
 // 1 a delete whole 
 // a convert and absorve and check 
+
+
+
+# explicatin of the code 
+
+User is expected to send flags that determine an algoritms
+{--simple, --complex, --medium, --adaptive}
+If flag is not provided --adaptive is used
+check algoritms for details on the flags :
+
+Becnh option provides a result on the operations and data
+
+The goal is to provide numbers that fit in the integer category
+And sort them
+Initial atemt took strings of numbers to proces
+But subject asks to get rid of overflows
+So atoi is used given the numbers
+
+Numbers are provided in list or argumets 
+
+to give freedom to the user
+
+We seek if flags are correct and we dont have to many of them
+
+then we loop argumens parsed skyping flags and calling ft_split on each argument
+
+This gives us a way to recieve lsits and arguments as numbers
+
+Arguments are put on a temporal matrix were each argument gets artoi
+send to a node thats created and added to the alist
+
+Atoi is modified to deal with overflows and non numbers
+
+Each exist frees everything.
+
+After te algoritm is done we free.
+
+The linked list is made as a double linked looped list 
+This allows for conveniece of accesing the first element of the stack and the last
+
+Operations are clsutered in 4 kinds and called with difefent arguments.
+And a print option.
+
+if no arguments the prompt has to be resended this mean exit with nothing 
+
+Algoritms
+
+Select
+- looks for minimal element
+- looks wich way is faster
+- sends to b 
+- start over
+
+when done 
+- push all b stack to a and it will be sorted
+
+Chunking
+
+Radix.
+One element of the list is a intger that compacts all the numbers respecting the order in the [0, total elements] range
+This makes the max number of bits lowers
+reducing the iterates of radix sort
+Radix sort takes the least significative value bite and send it to b stack if its 1 
+Then emptyes b stack and repeats
+
+Adaptive
+Send to diferent algoritms based on the disorder level*
+The disorder is an heuristic that counts the number of mismached pairs
+That is take an element compare how many elements are afer that element mistplaced
+Each misplaced is 1 mistake a non misplace 1 oportunity 
+Do that for each element add it 
+And we get a 0 <= disorder <= 1 metric
+Consideration on 0 division and precautions are taken account.
+
+For printing the operations operations use the print flag .
+
+//
+

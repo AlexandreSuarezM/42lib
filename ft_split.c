@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asuarez <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: asuarez <asuarez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/12 14:15:29 by asuarez           #+#    #+#             */
-/*   Updated: 2026/10/15 22:22:25 by asuarez          ###   ########.fr       */
+/*   Updated: 2026/11/19 21:25:15 by asuarez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "pushswap.h"
 
 static size_t	count_words(char const *s, char c)
 {
@@ -50,6 +50,7 @@ static void	*ft_free(char **arr, size_t i)
 	return (NULL);
 }
 
+// space and \0  Space 
 char	**ft_split(char const *s, char c)
 {
 	char	**array;
